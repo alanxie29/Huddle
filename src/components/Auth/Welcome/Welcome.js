@@ -50,8 +50,9 @@ export default class Welcome extends Component {
                 <View style={styles.line} />
                 <Text style={styles.subtitle}> Connecting Football Fans </Text>
                 <Text style={styles.subtitle}> Supporting Local Venues </Text>
-                <Button title="Sign Up" style={styles.button} onPress={() => navigate('SignUp')} ></Button>
-                <Text style={styles.signintext}>Already have an account?</Text><Text style={styles.signin}>Sign In</Text>
+                <Button title="Sign Up" style={styles.button} onPress={() => navigate('SignUp')} />
+                <Text style={styles.signintext}>Already have an account?</Text>
+                <Button title="Sign In" style={styles.button} onPress={() => navigate('Login')} />
             </View>
         )
     }

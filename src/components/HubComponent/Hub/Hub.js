@@ -12,9 +12,10 @@ export default class Hub extends Component {
             }
         })
 
+        
         return (
             <View>
-                <Text style={styles.title}>Bill Sheng Love Mujtaba Big Piece Hub</Text>
+                <Text style={styles.title}>Patrick Du Love Mujtaba Big Piece Hub</Text>
             </View>
         )
     }

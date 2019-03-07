@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
@@ -7,6 +8,7 @@ import Home from './src/components/HomeComponent/Home/Home';
 import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
+import { Font } from 'expo';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,9 +18,11 @@ import Hub from './src/components/HubComponent/Hub/Hub';
 // });
 
 export default class App extends Component {
+
   render() {
     return (
-        <AppContainer/>
+      <AppContainer/>
+
     )
   }
 }
@@ -74,12 +78,12 @@ const AppStack = createBottomTabNavigator(
     }
   },
   {
-    tabBarOptions: 
+    tabBarOptions:
     {
-    activeTintColor: 'black',
-    inactiveTintColor: '#686868',
-    style: {
-      height: '10%',
+      activeTintColor: 'black',
+      inactiveTintColor: '#686868',
+      style: {
+        height: '10%',
       }
     },
   }

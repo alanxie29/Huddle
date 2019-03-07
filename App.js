@@ -19,33 +19,14 @@ import { Font } from 'expo';
 
 export default class App extends Component {
 
-  state = {
-    fontLoaded: false,
-  };
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      'open-sans-bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
-    });
-    this.setState({ fontLoaded: true });
-  }
-
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {
-          this.state.fontLoaded ? (
-            <Text style={{ fontFamily: 'open-sans-bold', fontSize: 56 }}>
-              Hello, world!
-            </Text>
-          ) : null
-        }
-      </View>
+      <AppContainer/>
 
     )
   }
 }
-{/* <AppContainer/>*/ }
+
 const AuthStack = createStackNavigator(
   {
     Login: Login,

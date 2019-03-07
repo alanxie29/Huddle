@@ -76,7 +76,7 @@ export default class Login extends Component {
                 <Text style={styles.subtitle}>Sign in to access your account</Text>
                 <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} />
                 <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} />
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} style={styles.button}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.loginRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>

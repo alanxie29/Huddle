@@ -90,7 +90,7 @@ export default class SignUp extends Component {
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
-            </View >
+            </View>
         )
     }
 }

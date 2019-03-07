@@ -45,7 +45,10 @@ export default class Home extends Component {
 
         return (
             <View>
+               
                 <Text style={styles.title}>Bill Sheng Love Mujtaba Big Piece Home</Text>
+                 <Text>{this.state.locationResult}</Text>
+
             </View>
         )
     }

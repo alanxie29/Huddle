@@ -21,9 +21,9 @@ export default class Login extends Component {
             back: {
                 position: 'absolute',
                 top: 0,
-                right: 0,
+                left: 0,
                 marginTop: 10,
-                marginRight: 30
+                marginLeft: 30
             },
             title: {
                 textAlign: 'center',
@@ -71,7 +71,7 @@ export default class Login extends Component {
 
         return (
             <View style={styles.container}>
-                <Ionicons name="ios-close" size={40} color="black" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
+                <Ionicons name="ios-arrow-round-back" size={40} color="black" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>LOG IN TO YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>Sign in to access your account</Text>
                 <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} />

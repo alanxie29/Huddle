@@ -28,16 +28,16 @@ export default class SignUp extends Component {
             back: {
                 position: 'absolute',
                 top: 0,
-                right: 0,
+                left: 0,
                 marginTop: 10,
-                marginRight: 30
+                marginLeft: 30
             },
             title: {
                 textAlign: 'center',
                 marginTop: 60,
                 fontFamily: 'OpenSans-Light',
                 color: '#000',
-                fontSize: 34,
+                fontSize: 32,
             },
             subtitle: {
                 fontFamily: 'OpenSans-Light',
@@ -80,7 +80,7 @@ export default class SignUp extends Component {
         return (
 
             <View style={styles.container}>
-                <Ionicons name="ios-close" size={40} color="black" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
+                <Ionicons name="ios-arrow-round-back" size={40} color="black" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>These can be adjusted in your settings</Text>
                 <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} />

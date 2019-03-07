@@ -10,7 +10,6 @@ export default class Home extends Component {
                 textAlign: 'center',
                 fontSize: 30,
                 marginBottom: 15,
-                fontFamily: 'Poppins-BlackItalic'
             }
         })
 

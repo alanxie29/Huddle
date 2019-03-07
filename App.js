@@ -9,7 +9,6 @@ import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
 import { Font } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',

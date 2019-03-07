@@ -12,10 +12,13 @@ export default class Profile extends Component {
             }
         })
 
+        const { navigate } = this.props.navigation;
+
+
         return (
             <View>
                 <Text style={styles.title}>Bill Sheng Love Mujtaba Big Profile</Text>
-                <Button title="Sign Out" onPress={() => this.props.navigation.navigate('Welcome')}></Button>
+                <Button title="Sign Out" onPress={() => navigate('Welcome')}></Button>
             </View>
         )
     }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
+import { Text, View } from 'react-native';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
 import Home from './src/components/HomeComponent/Home/Home';
 import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
+import { Font } from 'expo';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,12 +18,40 @@ import Hub from './src/components/HubComponent/Hub/Hub';
 // });
 
 export default class App extends Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Poppins-BlackItalic': require('./src/assets/fonts/Poppins-BlackItalic.ttf'),
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
-        <AppContainer/>
+    
+        this.state.fontLoaded ? (
+          <AppContainer style={{ fontFamily: 'Poppins-BlackItalic'}}/>
+        ) : null
+
+    
+
+      /*<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {
+          this.state.fontLoaded ? (
+            <Text style={{ fontFamily: 'Poppins-Light', fontSize: 56 }}>
+              Hello, world!
+              </Text>
+          ) : null
+        }
+      </View>*/
     )
   }
+  
 }
+
 
 const AuthStack = createStackNavigator(
   {
@@ -74,12 +104,12 @@ const AppStack = createBottomTabNavigator(
     }
   },
   {
-    tabBarOptions: 
+    tabBarOptions:
     {
-    activeTintColor: 'black',
-    inactiveTintColor: '#686868',
-    style: {
-      height: '10%',
+      activeTintColor: 'black',
+      inactiveTintColor: '#686868',
+      style: {
+        height: '10%',
       }
     },
   }

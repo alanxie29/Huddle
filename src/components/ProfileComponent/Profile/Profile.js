@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
 
 
 export default class Profile extends Component {
@@ -15,6 +15,7 @@ export default class Profile extends Component {
         return (
             <View>
                 <Text style={styles.title}>Bill Sheng Love Mujtaba Big Profile</Text>
+                <Button title="Sign Out" onPress={() => this.props.navigation.navigate('Welcome')}></Button>
             </View>
         )
     }

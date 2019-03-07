@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
@@ -95,8 +95,6 @@ const AppContainer = createAppContainer(createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 ));
-
-
 
 
 

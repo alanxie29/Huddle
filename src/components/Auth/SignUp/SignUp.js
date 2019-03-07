@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, Button } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class SignUp extends Component {
     state = {
@@ -27,15 +28,22 @@ export default class SignUp extends Component {
     render() {
         const styles = StyleSheet.create({
             title: {
-                textAlign: 'center',
+                marginTop: 30,
+                fontFamily: 'OpenSans-Bold',
+                color: '#fff',
                 fontSize: 30,
+            },
+            subtitle: {
+                fontSize: 14,
+                color: '#ccc',
                 marginBottom: 15
             },
             textInput: {
+                textAlign: 'center',
                 height: 40,
                 width: 320,
-                borderColor: 'gray',
-                borderWidth: 1,
+                borderColor: '#ccc',
+                borderBottomWidth: 1,
                 marginBottom: 15,
                 borderRadius: 5,
                 padding: 10
@@ -46,33 +54,29 @@ export default class SignUp extends Component {
                 marginBottom: 20,
                 width: 200,
             },
-            wrapper: {
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
             container: {
-                marginTop: '20%',
+                textAlign: 'center',
                 marginBottom: 'auto',
                 flex: 1,
                 alignItems: 'center',
                 backgroundColor: '#F5FCFF',
-            }
-  
+            },
+
+
         })
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Huddle</Text>
-                <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Name" style={styles.textInput} />                
+                <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
+                <Text style={styles.subtitle}>These can be adjusted in the settings.</Text>
+                <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Username" style={styles.textInput} />
                 <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} />
                 <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} />
                 <TextInput value={this.state.confirmPassword} onChangeText={input => this.setState({ confirmPassword: input })} placeholder="Confirm Password" secureTextEntry={true} style={styles.textInput} />
                 <TextInput value={this.state.favouriteTeam} onChangeText={input => this.setState({ favouriteTeam: input })} placeholder="Favourite Team" style={styles.textInput} />
-                
-                <View style={styles.wrapper}>
-                    <View style={styles.line} />
-                </View>
                 <Button onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} title="Sign Up" />
+                <Ionicons name="md-checkmark-circle" size={32} color="green" />
+
             </View>
         )
     }

@@ -9,6 +9,7 @@ import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
 import { Font } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,32 +25,26 @@ export default class App extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'Poppins-BlackItalic': require('./src/assets/fonts/Poppins-BlackItalic.ttf'),
-    });
+      'OpenSans-Light': require('./src/assets/fonts/OpenSans-Light.ttf'),
+      'OpenSans-Regular': require('./src/assets/fonts/OpenSans-Regular.ttf'),
+      'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
+      'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
+      'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
+      'ionicons': require('./src/assets/fonts/Ionicons.ttf')
+    }
+    );
     this.setState({ fontLoaded: true });
   }
 
   render() {
     return (
-    
-        this.state.fontLoaded ? (
-          <AppContainer style={{ fontFamily: 'Poppins-BlackItalic'}}/>
-        ) : null
 
-    
-
-      /*<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {
-          this.state.fontLoaded ? (
-            <Text style={{ fontFamily: 'Poppins-Light', fontSize: 56 }}>
-              Hello, world!
-              </Text>
-          ) : null
-        }
-      </View>*/
+      this.state.fontLoaded ? (
+        <AppContainer />
+      ) : null
     )
   }
-  
+
 }
 
 

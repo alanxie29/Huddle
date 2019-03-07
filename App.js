@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import { Text, View } from 'react-native';
 import Login from './src/components/Auth/Login/Login';
@@ -19,13 +18,6 @@ import { Font } from 'expo';
 // });
 
 export default class App extends Component {
-<<<<<<< HEAD
-
-  render() {
-    return (
-      <AppContainer/>
-
-=======
   state = {
     fontLoaded: false,
   };
@@ -49,7 +41,6 @@ export default class App extends Component {
       this.state.fontLoaded ? (
         <AppContainer />
       ) : null
->>>>>>> patrick
     )
   }
 

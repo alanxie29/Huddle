@@ -39,7 +39,7 @@ export default class Home extends Component {
             title: {
                 textAlign: 'center',
                 fontSize: 30,
-                marginBottom: 15
+                marginBottom: 15,
             }
         })
 

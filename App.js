@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
+import { Text, View } from 'react-native';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
 import Home from './src/components/HomeComponent/Home/Home';
@@ -18,14 +19,42 @@ import { Font } from 'expo';
 // });
 
 export default class App extends Component {
+<<<<<<< HEAD
 
   render() {
     return (
       <AppContainer/>
 
+=======
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'OpenSans-Light': require('./src/assets/fonts/OpenSans-Light.ttf'),
+      'OpenSans-Regular': require('./src/assets/fonts/OpenSans-Regular.ttf'),
+      'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
+      'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
+      'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
+      'ionicons': require('./src/assets/fonts/Ionicons.ttf')
+    }
+    );
+    this.setState({ fontLoaded: true });
+  }
+
+  render() {
+    return (
+
+      this.state.fontLoaded ? (
+        <AppContainer />
+      ) : null
+>>>>>>> patrick
     )
   }
+
 }
+
 
 const AuthStack = createStackNavigator(
   {

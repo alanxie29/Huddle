@@ -36,7 +36,7 @@ export default class SignUp extends Component {
                 textAlign: 'center',
                 marginTop: 60,
                 fontFamily: 'OpenSans-Light',
-                color: '#000',
+                color: 'white',
                 fontSize: 32,
             },
             subtitle: {
@@ -55,23 +55,27 @@ export default class SignUp extends Component {
                 fontFamily: 'OpenSans-Light',
                 marginBottom: 20,
                 padding: 10,
+                color: '#ccc'
             },
             container: {
                 marginBottom: 'auto',
                 flex: 1,
                 alignItems: 'center',
-                backgroundColor: '#fff'
+                backgroundColor: '#272727'
             },
             button: {
                 padding: 10,
-                backgroundColor: '#2ecc71',
+                backgroundColor: '#FFDC7F',
                 borderRadius: 20,
                 width: 300,
                 height: 45
             },
             buttonText: {
                 textAlign: 'center',
-                color: 'white'
+                color: 'black',
+                fontFamily: 'OpenSans-Regular',
+                fontSize: 17
+
             }
 
 
@@ -80,7 +84,7 @@ export default class SignUp extends Component {
         return (
 
             <View style={styles.container}>
-                <Ionicons name="ios-arrow-round-back" size={40} color="black" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
+                <Ionicons name="ios-arrow-round-back" size={40} color="white" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>These can be adjusted in your settings</Text>
                 <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} />

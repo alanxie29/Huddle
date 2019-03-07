@@ -82,22 +82,21 @@ const AppStack = createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={40} color={{ tintColor }} />
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
       }
     },
     Hub: {
       screen: HubStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-apps" size={40} color={{ tintColor }} />
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-american-football" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='football-ball' size={22} style={{ color: tintColor }} />
       }
     },
     Profile: {
       screen: ProfileStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-person" size={40} color={{ tintColor }} />
-
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-person" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
       }
     }
@@ -105,8 +104,8 @@ const AppStack = createBottomTabNavigator(
   {
     tabBarOptions:
     {
-      activeTintColor: 'black',
-      inactiveTintColor: '#686868',
+      activeTintColor: '#272727',
+      inactiveTintColor: '#ccc',
       style: {
         height: '10%',
       }

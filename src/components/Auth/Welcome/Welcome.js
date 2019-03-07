@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, Button } from 'react-native';
+import { Text, View, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
 
 export default class Welcome extends Component {
 
@@ -12,47 +12,56 @@ export default class Welcome extends Component {
                 flex: 1,
                 alignItems: 'center',
                 textAlign: 'center',
-                backgroundColor: '#1F1F1F',
+                backgroundColor: '#272727',
             },
-            subtitle: {
-                fontSize: 16,
-                color: 'white'
-            },
-            image: {
-
+            logo: {
+                marginTop: 160,
+                height: 100,
+                width: 240,
             },
             line: {
-                width: 320,
-                height: 20,
+                width: 240,
+                height: 5,
                 backgroundColor: '#FFDC7F',
-                marginTop: 10
+                marginBottom: 20
+            },
+            subtitle: {
+                fontSize: 17,
+                color: '#FFF',
+                fontFamily: 'OpenSans-Light'
             },
             button: {
+                marginTop: 100,
+                padding: 10,
                 backgroundColor: '#FFDC7F',
-                color: '#1F1F1F',
+                borderRadius: 20,
+                width: 260,
+                height: 40,
+                marginBottom: 10
             },
-            signintext: {
-                fontSize: 14,
-                color: '#FFF'
+            buttonText: {
+                textAlign: 'center',
+                color: '#272727',
+                fontFamily: 'OpenSans-Regular',
+                fontSize: 17,
             },
-            signin: {
-                fontSize: 14,
+            signIn: {
+                fontFamily: 'OpenSans-Regular',
                 color: '#FFDC7F'
             }
-        
-        });
-        const { navigate } = this.props.navigation;
 
+        });
 
         return (
             <View style={styles.container}>
-                <Image source={require('../../../assets/images/white.png')} style={styles.image} />
+                <Image style={styles.logo} source={require('../../../assets/images/white.png')} />
                 <View style={styles.line} />
                 <Text style={styles.subtitle}> Connecting Football Fans </Text>
                 <Text style={styles.subtitle}> Supporting Local Venues </Text>
-                <Button title="Sign Up" style={styles.button} onPress={() => navigate('SignUp')} />
-                <Text style={styles.signintext}>Already have an account?</Text>
-                <Button title="Sign In" style={styles.button} onPress={() => navigate('Login')} />
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')} style={styles.button}>
+                    <Text style={styles.buttonText}>Get Started</Text>
+                </TouchableOpacity>
+                <Text style={styles.subtitle}>Already have an account? <Text onPress={() => this.props.navigation.navigate('Login')} style={styles.signIn}>Sign In</Text></Text>
             </View>
         )
     }

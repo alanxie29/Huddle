@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
+import { Text, View } from 'react-native';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
 import Home from './src/components/HomeComponent/Home/Home';
 import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
+import { Font } from 'expo';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,12 +18,34 @@ import Hub from './src/components/HubComponent/Hub/Hub';
 // });
 
 export default class App extends Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'OpenSans-Light': require('./src/assets/fonts/OpenSans-Light.ttf'),
+      'OpenSans-Regular': require('./src/assets/fonts/OpenSans-Regular.ttf'),
+      'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
+      'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
+      'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
+      'ionicons': require('./src/assets/fonts/Ionicons.ttf')
+    }
+    );
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
-        <AppContainer/>
+
+      this.state.fontLoaded ? (
+        <AppContainer />
+      ) : null
     )
   }
+
 }
+
 
 const AuthStack = createStackNavigator(
   {
@@ -74,12 +98,12 @@ const AppStack = createBottomTabNavigator(
     }
   },
   {
-    tabBarOptions: 
+    tabBarOptions:
     {
-    activeTintColor: 'black',
-    inactiveTintColor: '#686868',
-    style: {
-      height: '10%',
+      activeTintColor: 'black',
+      inactiveTintColor: '#686868',
+      style: {
+        height: '10%',
       }
     },
   }

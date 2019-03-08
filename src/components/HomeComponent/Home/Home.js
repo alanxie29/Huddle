@@ -39,13 +39,16 @@ export default class Home extends Component {
             title: {
                 textAlign: 'center',
                 fontSize: 30,
-                marginBottom: 15
+                marginBottom: 15,
             }
         })
 
         return (
             <View>
+               
                 <Text style={styles.title}>Bill Sheng Love Mujtaba Big Piece Home</Text>
+                 <Text>{this.state.locationResult}</Text>
+
             </View>
         )
     }

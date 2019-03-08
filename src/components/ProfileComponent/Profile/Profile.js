@@ -30,23 +30,6 @@ export default class Profile extends React.Component {
     this.setState({ locationResult: address })
   }
 
-
-
-
-  render() {
-    let { image } = this.state;
-    return (
-      <View>
-        <Button title="Pick an image from camera roll" onPress={this._pickImage} />
-        <Button title="Take a Picture" onPress={this._takeImage} />
-        {image &&
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-        <Text>{this.state.locationResult}</Text>
-      </View>
-    );
-  }
-
-
   _pickImage = async () => {
     let { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status !== 'granted') {
@@ -100,16 +83,13 @@ export default class Profile extends React.Component {
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#272727',
-
       },
       Holder: {
         paddingVertical: 20,
         marginTop: 30,
         width: 340,
         height: 600,
-
       },
-
       name: {
         textAlign: 'center',
         fontFamily: 'OpenSans-Light',
@@ -162,9 +142,7 @@ export default class Profile extends React.Component {
         fontFamily: 'OpenSans-Light',
         fontSize: 16,
         color: 'white',
-
       }
-
 
     }
     return (
@@ -186,13 +164,13 @@ export default class Profile extends React.Component {
               <TouchableOpacity style={styles.cameraButton} onPress={this._removeImage}>
                 <Ionicons name="ios-close" size={30} style={styles.icon} />
               </TouchableOpacity>
-
             </View>
+
           </View>
 
           <View style={styles.infoContainer}>
             <Text style={styles.userInfo}>Email: <Text style={styles.userInfoInput}>billxsheng@gmail.com</Text></Text>
-            <Text style={styles.userInfo}>Location: <Text style={styles.userInfoInput}>23 Marlow Drive</Text></Text>
+            <Text style={styles.userInfo}>Location: <Text style={styles.userInfoInput}>{this.state.locationResult}</Text></Text>
             <Text style={styles.userInfo}>Favourite Team: <Text style={styles.userInfoInput}>Pittsburgh Steelers</Text></Text>
             <Text style={styles.userInfo}>Total Wins: <Text style={styles.userInfoInput}>18</Text></Text>
             <Text style={styles.userInfo}>Last Game: <Text style={styles.userInfoInput}>Steelers vs. Patriots @ John's Pub</Text></Text>
@@ -206,17 +184,18 @@ export default class Profile extends React.Component {
 
         </View>
 
-
-
-
-
-
-        {/* <Button title="Pick an image from camera roll" onPress={this._pickImage} />
-        <Button title="Take a Picture" onPress={this._takeImage} /> */}
-
       </View>
+
+
     );
   }
+
+
+
+
+
+
+
 
 
 }

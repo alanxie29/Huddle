@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8836,
-  "expoServerNgrokUrl": "https://kk-5bv.anonymous.huddle.exp.direct",
-  "packagerNgrokUrl": "https://packager.kk-5bv.anonymous.huddle.exp.direct",
-  "ngrokPid": 1096,
-  "packagerPid": 16960
+  "packagerPid": 29220,
+  "expoServerNgrokUrl": "https://2y-fs5.anonymous.huddle.exp.direct",
+  "packagerNgrokUrl": "https://packager.2y-fs5.anonymous.huddle.exp.direct",
+  "ngrokPid": 820,
+  "devToolsPort": 19002
 }

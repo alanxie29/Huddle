@@ -9,6 +9,7 @@ import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Hub from './src/components/HubComponent/Hub/Hub';
 import { Font } from 'expo';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -81,18 +82,21 @@ const AppStack = createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
       }
     },
     Hub: {
       screen: HubStack,
       navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-american-football" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='football-ball' size={22} style={{ color: tintColor }} />
       }
     },
     Profile: {
       screen: ProfileStack,
       navigationOptions: {
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-person" size={26} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
       }
     }
@@ -100,8 +104,8 @@ const AppStack = createBottomTabNavigator(
   {
     tabBarOptions:
     {
-      activeTintColor: 'black',
-      inactiveTintColor: '#686868',
+      activeTintColor: '#272727',
+      inactiveTintColor: '#ccc',
       style: {
         height: '10%',
       }
@@ -119,24 +123,3 @@ const AppContainer = createAppContainer(createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 ));
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

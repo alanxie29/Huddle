@@ -1,9 +1,17 @@
 {
-  "devToolsPort": 19002,
   "expoServerPort": 19000,
+<<<<<<< HEAD
   "packagerPort": 19001,
   "packagerPid": 8836,
   "expoServerNgrokUrl": "https://kk-5bv.anonymous.huddle.exp.direct",
   "packagerNgrokUrl": "https://packager.kk-5bv.anonymous.huddle.exp.direct",
   "ngrokPid": 1096
+=======
+  "expoServerNgrokUrl": "https://x6-8yt.anonymous.huddle.exp.direct",
+  "packagerNgrokUrl": "https://packager.x6-8yt.anonymous.huddle.exp.direct",
+  "ngrokPid": 25172,
+  "devToolsPort": 19002,
+  "packagerPort": 19001,
+  "packagerPid": 16960
+>>>>>>> 1cf1e1a0556f476344cc3b8d33e500c58b4d5f30
 }

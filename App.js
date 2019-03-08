@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
 import { Text, View } from 'react-native';
 import Login from './src/components/Auth/Login/Login';
@@ -31,14 +31,12 @@ export default class App extends Component {
       'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
       'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
       'ionicons': require('./src/assets/fonts/Ionicons.ttf')
-    }
-    );
+    });
     this.setState({ fontLoaded: true });
   }
 
   render() {
     return (
-
       this.state.fontLoaded ? (
         <AppContainer />
       ) : null
@@ -82,21 +80,21 @@ const AppStack = createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={26} style={{ color: tintColor }} />
+        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-home' size={28} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
       }
     },
     Hub: {
       screen: HubStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-american-football" size={26} style={{ color: tintColor }} />
+        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-american-football' size={28} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='football-ball' size={22} style={{ color: tintColor }} />
       }
     },
     Profile: {
       screen: ProfileStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-person" size={26} style={{ color: tintColor }} />
+        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-contact' size={28} style={{ color: tintColor }} />
         // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
       }
     }
@@ -107,7 +105,7 @@ const AppStack = createBottomTabNavigator(
       activeTintColor: '#272727',
       inactiveTintColor: '#ccc',
       style: {
-        height: '10%',
+        height: '8%',
       }
     },
   }
@@ -123,3 +121,26 @@ const AppContainer = createAppContainer(createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 ));
+
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});

@@ -24,9 +24,15 @@ export default class Home extends Component {
             this.setState({ hasLocationPermission: true });
         }
     }
-  
+
     render() {
         const styles = StyleSheet.create({
+            container: {
+                marginBottom: 'auto',
+                flex: 1,
+                alignItems: 'center',
+                backgroundColor: '#272727'
+            },
             title: {
                 textAlign: 'center',
                 fontSize: 30,
@@ -35,11 +41,10 @@ export default class Home extends Component {
         })
 
         return (
-            <View>
-               
-                <Text style={styles.title}>Bill Sheng Love Mujtaba Big Piece Home</Text>
-                 
+            <View style={styles.container}>
 
+                <Text style={styles.title}>Bill Sheng Love Mujtaba Big Piece Home</Text>
+                <Text>{this.state.locationResult}</Text>
             </View>
         )
     }

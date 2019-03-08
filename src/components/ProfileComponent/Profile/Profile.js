@@ -32,6 +32,10 @@ export default class Profile extends React.Component {
     }
   };
 
+  _removeImage = async () => {
+    this.setState({ image: ('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png') })
+  }
+
   render() {
     let { image } = this.state;
     const styles = {
@@ -65,51 +69,44 @@ export default class Profile extends React.Component {
       cameraButton: {
         padding: 10,
         marginHorizontal: 10,
-        backgroundColor: '#FFDC7F',
+        borderWidth: 1,
+        borderColor: '#FFDC7F',
         borderRadius: 50,
         height: 50,
         width: 50,
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 5
       },
       icon: {
-        color: 'white'
+        color: '#FFDC7F'
       },
       infoContainer: {
         textAlign: 'left',
-        paddingHorizontal: 20,
-        paddingVertical: 5
+        paddingHorizontal: 14,
+        paddingVertical: 10
       },
       userInfo: {
-        fontFamily: 'OpenSans-Light',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         color: 'white',
         marginVertical: 10
       },
       userInfoInput: {
+        fontFamily: 'OpenSans-Light',
         color: '#ccc',
       },
       logoutButton: {
         width: 120,
         height: 40,
         borderRadius: 30,
-        backgroundColor: '#e74c3c',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 5
+        backgroundColor: '#e74c3c'
       },
       logoutText: {
         fontFamily: 'OpenSans-Light',
         fontSize: 16,
-        color: 'white'
+        color: 'white',
+
       }
 
 
@@ -130,6 +127,10 @@ export default class Profile extends React.Component {
               <TouchableOpacity style={styles.cameraButton} onPress={this._pickImage}>
                 <Ionicons name="ios-images" size={30} style={styles.icon} />
               </TouchableOpacity>
+              <TouchableOpacity style={styles.cameraButton} onPress={this._removeImage}>
+                <Ionicons name="ios-close" size={30} style={styles.icon} />
+              </TouchableOpacity>
+
             </View>
           </View>
 

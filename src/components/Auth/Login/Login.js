@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TextInput, StyleSheet, Button} from 'react-native';
+import {Text, View, TextInput, StyleSheet, Button, TouchableOpacity} from 'react-native';
 
 export default class Login extends Component {
     state = {
@@ -47,7 +47,7 @@ export default class Login extends Component {
                 flex: 1,
                 alignItems: 'center',
                 backgroundColor: '#F5FCFF',
-            }
+            },
         })
 
         return (

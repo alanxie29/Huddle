@@ -36,7 +36,7 @@ export default class SignUp extends Component {
                 textAlign: 'center',
                 marginTop: 60,
                 fontFamily: 'OpenSans-Light',
-                color: 'white',
+                color: '#ffffff',
                 fontSize: 32,
             },
             subtitle: {
@@ -47,7 +47,6 @@ export default class SignUp extends Component {
                 marginBottom: 60
             },
             textInput: {
-                textAlign: 'center',
                 height: 45,
                 width: 300,
                 borderColor: '#ccc',
@@ -55,7 +54,7 @@ export default class SignUp extends Component {
                 fontFamily: 'OpenSans-Light',
                 marginBottom: 20,
                 padding: 10,
-                color: '#ccc'
+                color: 'white'
             },
             container: {
                 marginBottom: 'auto',
@@ -87,10 +86,10 @@ export default class SignUp extends Component {
                 <Ionicons name="ios-arrow-round-back" size={40} color="white" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>These can be adjusted in your settings</Text>
-                <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} />
-                <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} />
-                <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} />
-                <TextInput value={this.state.confirmPassword} onChangeText={input => this.setState({ confirmPassword: input })} placeholder="Confirm Password" secureTextEntry={true} style={styles.textInput} />
+                <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.confirmPassword} onChangeText={input => this.setState({ confirmPassword: input })} placeholder="Confirm Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>

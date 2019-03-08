@@ -40,7 +40,6 @@ export default class Login extends Component {
                 marginBottom: 60
             },
             textInput: {
-                textAlign: 'center',
                 height: 45,
                 width: 300,
                 borderColor: '#ccc',
@@ -76,8 +75,8 @@ export default class Login extends Component {
                 <Ionicons name="ios-arrow-round-back" size={40} color="white" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>LOG IN TO YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>Sign in to access your account</Text>
-                <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} />
-                <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} />
+                <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.loginRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>

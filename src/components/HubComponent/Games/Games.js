@@ -7,7 +7,6 @@ export default class Games extends Component {
         const styles = StyleSheet.create({
             holder: {
 
-                backgroundColor: '#272727',
                 alignItems: 'center',
                 paddingVertical: 20,
                 width: '100%',
@@ -15,13 +14,13 @@ export default class Games extends Component {
             title: {
                 textAlign: 'center',
                 fontSize: 30,
-                marginBottom: 15
+                marginBottom: 15,
             }
         })
 
 
         return (
-            <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
+            <ScrollView contentContainerStyle={styles.holder}>
                 <GCard game="49ers vs Rams" date="3/9/2019" type="Week 1 of 17" />
                 <GCard game="Raiders vs Chiefs" date="3/11/2019" type="Week 1 of 17" />
                 <GCard game="Cardinals vs Seahawks" date="3/13/2019" type="Week 1 of 17" />

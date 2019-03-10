@@ -9,7 +9,7 @@ import Welcome from './src/components/Auth/Welcome/Welcome';
 import Games from './src/components/HubComponent/Games/Games';
 import Venues from './src/components/HubComponent/Venues/Venues';
 import { Font } from 'expo';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -30,7 +30,7 @@ export default class App extends Component {
       'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
       'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
       'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
-      'ionicons': require('./src/assets/fonts/Ionicons.ttf')
+      'ionicons': require('./src/assets/fonts/Ionicons.ttf'),
     });
     this.setState({ fontLoaded: true });
   }
@@ -68,14 +68,13 @@ const HubStack = createMaterialTopTabNavigator(
     Games: {
       screen: Games,
       navigationOptions: {
-        // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
+        // icons go here
       }
     },
     Venues: {
       screen: Venues,
       navigationOptions: {
-
-        // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
+        // icons go here
       }
     }
   },
@@ -85,11 +84,17 @@ const HubStack = createMaterialTopTabNavigator(
       activeTintColor: '#272727',
       inactiveTintColor: '#ccc',
       lazy: true,
+      showIcon: true,
       labelStyle: {
-        color: 'black'
+        color: 'black',
+        marginTop: 65
       },
       style: {
-        height: '10%',
+        height: '15%',
+        backgroundColor: '#ffdc7f'
+      },
+      indicatorStyle: {
+        backgroundColor: '#272727',
       }
     },
   }

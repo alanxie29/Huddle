@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import GCard from './GCard';
 
 export default class Games extends Component {
     render() {
         const styles = StyleSheet.create({
-            container: {
-                marginBottom: 'auto',
-                flex: 1,
+            holder: {
+
+                backgroundColor: '#272727',
                 alignItems: 'center',
-                backgroundColor: '#272727'
+                paddingVertical: 20,
+                width: '100%',
             },
             title: {
                 textAlign: 'center',
@@ -18,11 +19,30 @@ export default class Games extends Component {
             }
         })
 
-        
+
         return (
-            <View style={styles.container}>
-                <Text style={styles.title}>Patrick Du Love Mujtaba Big Games</Text>
-            </View>
+            <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
+                <GCard game="49ers vs Rams" date="3/9/2019" type="Week 1 of 17" />
+                <GCard game="Raiders vs Chiefs" date="3/11/2019" type="Week 1 of 17" />
+                <GCard game="Cardinals vs Seahawks" date="3/13/2019" type="Week 1 of 17" />
+                <GCard game="Chargers vs Broncos" date="3/15/2019" type="Week 1 of 17" />
+                <GCard game="Colts vs Titans" date="3/17/2019" type="Week 1 of 17" />
+                <GCard game="Packers vs Falcons" date="3/19/2019" type="Week 2 of 17" />
+                <GCard game="Giants vs Jets" date="3/21/2019" type="Week 2 of 17" />
+                <GCard game="Donkeys vs Dolphins" date="3/23/2019" type="Week 2 of 17" />
+                <GCard game="Cardinals vs Seahawks" date="3/13/2019" type="Week 1 of 17" />
+                <GCard game="Chargers vs Broncos" date="3/15/2019" type="Week 1 of 17" />
+                <GCard game="Colts vs Titans" date="3/17/2019" type="Week 1 of 17" />
+                <GCard game="Packers vs Falcons" date="3/19/2019" type="Week 2 of 17" />
+                <GCard game="Giants vs Jets" date="3/21/2019" type="Week 2 of 17" />
+                <GCard game="Donkeys vs Dolphins" date="3/23/2019" type="Week 2 of 17" />
+                <GCard game="Cardinals vs Seahawks" date="3/13/2019" type="Week 1 of 17" />
+                <GCard game="Chargers vs Broncos" date="3/15/2019" type="Week 1 of 17" />
+                <GCard game="Colts vs Titans" date="3/17/2019" type="Week 1 of 17" />
+                <GCard game="Packers vs Falcons" date="3/19/2019" type="Week 2 of 17" />
+                <GCard game="Giants vs Jets" date="3/21/2019" type="Week 2 of 17" />
+                <GCard game="Donkeys vs Dolphins" date="3/23/2019" type="Week 2 of 17" />
+            </ScrollView>
         )
     }
 }

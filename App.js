@@ -65,34 +65,34 @@ const HomeStack = createStackNavigator(
 
 const HubStack = createMaterialTopTabNavigator(
   {
-  Games: {
-    screen: Games,
-    navigationOptions: {
-      // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
-    }
-  },
-  Venues: {
-    screen: Venues,
-    navigationOptions: {
-    
-      // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
-    }
-  }
-},
-{
-  tabBarOptions:
-  {
-    activeTintColor: '#272727',
-    inactiveTintColor: '#ccc',
-    lazy: true,
-    labelStyle: {
-      color: 'black'
+    Games: {
+      screen: Games,
+      navigationOptions: {
+        // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
+      }
     },
-    style: {
-      height: '10%',
+    Venues: {
+      screen: Venues,
+      navigationOptions: {
+
+        // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
+      }
     }
   },
-}
+  {
+    tabBarOptions:
+    {
+      activeTintColor: '#272727',
+      inactiveTintColor: '#ccc',
+      lazy: true,
+      labelStyle: {
+        color: 'black'
+      },
+      style: {
+        height: '10%',
+      }
+    },
+  }
 )
 
 const ProfileStack = createStackNavigator(

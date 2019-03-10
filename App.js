@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation';
-import { Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
 import Home from './src/components/HomeComponent/Home/Home';
 import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
-import Hub from './src/components/HubComponent/Hub/Hub';
+import Games from './src/components/HubComponent/Games/Games';
+import Venues from './src/components/HubComponent/Venues/Venues';
 import { Font } from 'expo';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -63,10 +63,36 @@ const HomeStack = createStackNavigator(
   }
 )
 
-const HubStack = createStackNavigator(
+const HubStack = createMaterialTopTabNavigator(
   {
-    Hub: Hub
+  Games: {
+    screen: Games,
+    navigationOptions: {
+      // tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='home-outline' size={30} style={{ color: tintColor}} />
+    }
+  },
+  Venues: {
+    screen: Venues,
+    navigationOptions: {
+    
+      // tabBarIcon: ({ tintColor }) => <FontAwesome5 name='user' size={28} style = {{ color: tintColor }} />
+    }
   }
+},
+{
+  tabBarOptions:
+  {
+    activeTintColor: '#272727',
+    inactiveTintColor: '#ccc',
+    lazy: true,
+    labelStyle: {
+      color: 'black'
+    },
+    style: {
+      height: '10%',
+    }
+  },
+}
 )
 
 const ProfileStack = createStackNavigator(
@@ -115,32 +141,11 @@ const AppStack = createBottomTabNavigator(
 const AppContainer = createAppContainer(createSwitchNavigator(
   {
     App: AppStack,
-    Auth: AuthStack
+    Auth: AuthStack,
+    Hub: HubStack
   },
   {
     initialRouteName: 'Auth'
   }
 ));
 
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

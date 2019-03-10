@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 
-export default class Hub extends Component {
+export default class Games extends Component {
     render() {
         const styles = StyleSheet.create({
             container: {
@@ -21,7 +21,7 @@ export default class Hub extends Component {
         
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Patrick Du Love Mujtaba Big Piece Hub</Text>
+                <Text style={styles.title}>Patrick Du Love Mujtaba Big Games</Text>
             </View>
         )
     }

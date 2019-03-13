@@ -1,7 +1,8 @@
 package com.billsheng.huddlespringmvc.services;
 
+import com.billsheng.huddlespringmvc.models.User;
+
 public interface UserService {
     boolean canAuthenticate();
-    boolean userAlreadyExists();
-    boolean getUserByEmail();
+    User findUserByEmail(String email);
 }

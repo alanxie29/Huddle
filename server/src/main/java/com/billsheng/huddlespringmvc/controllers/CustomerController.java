@@ -1,6 +1,6 @@
 package com.billsheng.huddlespringmvc.controllers;
 
-import com.billsheng.huddlespringmvc.domain.Customer;
+import com.billsheng.huddlespringmvc.models.Customer;
 import com.billsheng.huddlespringmvc.services.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

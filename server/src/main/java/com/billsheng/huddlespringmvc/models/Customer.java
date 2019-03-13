@@ -1,4 +1,4 @@
-package com.billsheng.huddlespringmvc.domain;
+package com.billsheng.huddlespringmvc.models;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.billsheng.huddlespringmvc.services;
 
-import com.billsheng.huddlespringmvc.domain.Customer;
+import com.billsheng.huddlespringmvc.models.Customer;
 import com.billsheng.huddlespringmvc.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 

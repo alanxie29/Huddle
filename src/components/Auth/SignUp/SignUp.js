@@ -7,20 +7,26 @@ export default class SignUp extends Component {
         name: '',
         email: '',
         password: '',
-        confirmPassword: '',
         error: '',
         loading: ''
     }
 
     signUpRequest() {
-        const name = this.state.name;
-        const email = this.state.email;
-        const password = this.state.password;
-        const confirmPassword = this.state.confirmPassword;
-        if (password !== confirmPassword) {
-            console.log(this.state.error)
+        event.preventDefault();
+
+        const userSignUpDetails = {
+            userSignUpEmail: this.state.email,
+            userSignUpPassword: this.state.password,
+            userSignUpName: this.state.name
         }
-        else console.log(name, email, password);
+
+        axios.post('localhost:8081/signup', {userSignUpDetails})
+          .then(success => {
+            console.log(success)
+        })
+          .catch(error => {
+              console.log(error);
+        });
     }
 
     render() {
@@ -89,7 +95,6 @@ export default class SignUp extends Component {
                 <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} placeholderTextColor="white"/>
                 <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} placeholderTextColor="white"/>
                 <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
-                <TextInput value={this.state.confirmPassword} onChangeText={input => this.setState({ confirmPassword: input })} placeholder="Confirm Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>

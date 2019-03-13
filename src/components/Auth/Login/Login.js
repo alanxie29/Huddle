@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios';
 
 export default class Login extends Component {
     state = {
@@ -11,9 +12,20 @@ export default class Login extends Component {
     }
 
     loginRequest() {
-        const email = this.state.email;
-        const password = this.state.password;
-        console.log(email, password)
+        event.preventDefault();
+
+        const userLoginDetails = {
+            userLoginEmail: this.state.email,
+            userLoginPassword: this.state.password
+        }
+
+        axios.post('localhost:8081/login', {userLoginDetails})
+          .then(isAuthenticated => {
+            console.log(isAuthenticated)
+        })
+          .catch(error => {
+              console.log(error);
+        });
     }
 
     render() {

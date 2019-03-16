@@ -30,7 +30,7 @@ export default class App extends Component {
       'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
       'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
       'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
-      'ionicons': require('./src/assets/fonts/Ionicons.ttf'),
+      'Ionicons': require('./src/assets/fonts/Ionicons.ttf'),
     });
     this.setState({ fontLoaded: true });
   }

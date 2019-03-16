@@ -11,3 +11,8 @@ public class HuddleSpringMvcApplication {
 	}
 
 }
+
+//Spring annotations can be thoought of as metadata for classes
+//metadata is a set of daa that describes and ives information about other data
+//spring is a framework for dependency-injection which is a pattern that allows to build very decoupled systems
+//

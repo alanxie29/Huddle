@@ -1,4 +1,4 @@
-package com.billsheng.huddlespringmvc.domain;
+package com.billsheng.huddlespringmvc.models;
 
 import lombok.Data;
 
@@ -16,12 +16,12 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String username;
+    private String email;
     private String password;
     private String chosenTeam;
     private int gamesPlayed;
     private int gamesWon;
-//    private Game[] gamesPlayed;
+    private Game[] games;
 
     public double winPercentage() {
         return (this.gamesWon / this.getGamesPlayed());
@@ -51,12 +51,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Rating, AirbnbRating } from 'react-native-elements';
+import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
+import { Rating } from 'react-native-elements';
+import { BackHandler } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+
 
 
 export default class VCard extends Component {
+    state = {
+        modalVisible: false,
+      };
+    
+      setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+      }
+
     render(props) {
         const styles = StyleSheet.create({
                     card: {
@@ -14,13 +26,16 @@ export default class VCard extends Component {
                     },
                     title: {
                         fontSize: 16,
-                        fontFamily: 'OpenSans-Light',
-                        color: 'black'
+                        fontFamily: 'OpenSans-Regular',
+                        color: 'black',
+                        paddingTop: 3,
+
                     },
                     info: {
                         fontFamily: 'OpenSans-Light',
-                        color: '#ccc',
-                        fontSize: 16
+                        color: '#adadad',
+                        fontSize: 12,
+                        paddingTop: 3,
         
                     },
                     vImage: {
@@ -28,17 +43,66 @@ export default class VCard extends Component {
                         height: 95,
                         borderRadius: 10,
                         marginBottom: 5,
+                    },
+                    ratingNumber: {
+                        color: '#adadad',
+                        marginLeft: 2,
+                        fontSize: 14,
+                        fontFamily: 'OpenSans-Light'
+                    },
+                    distance: {
+                        marginLeft: 135,
+                        fontFamily: 'OpenSans-Regular',
+                        fontSize: 14,
+                        color: 'black',
+                        marginTop: 3,
+                    },
+                    modalClose: {
+                        width: 15,
+                        height: 15,
+                        marginTop: '50%',
+                        marginBottom: '50%',
                     }
-                            
+
                 })
 
         return (
-            <View style={styles.card}>
-            <Image style={styles.vImage} source={this.props.vImage}></Image>      
-               <Text style={styles.title}>{this.props.place}</Text>
-                <Text style={styles.info}>{this.props.date} {this.props.type}</Text>
-                <AirbnbRating defaultRating='4'></AirbnbRating>      
+            
+        <TouchableOpacity style={styles.card} onPress={() => {
+            this.setModalVisible(!this.state.modalVisible);
+          }}>
+          <View>
+          <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}> 
+        {/* <TouchableOpacity style={styles.card}
+                onPress={() => {
+                this.setState({modalVisible: false})
+                } }>
+            <Image
+              style={[styles.modalClose]}
+              source={require('../../../assets/images/close.png')} />
+                </TouchableOpacity> */}
+
+
+            <Text style={{marginTop: '50%', marginLeft: '50%' }}></Text>
+
+            </Modal>
             </View>
+          
+            <Image style={styles.vImage} source={this.props.vImage}></Image>                
+               <View style={{flexDirection:'row'}}><Text style={styles.title}>{this.props.place}</Text>
+               <Text style={styles.distance}>{this.props.distance}km</Text>
+                
+
+            </View>
+            
+            <View style={{flexDirection:'row'}}> 
+                <Text style={styles.info}>{this.props.info}</Text> 
+                <Rating imageSize={14} fractions={1} readonly startingValue={this.props.stars} style={{ paddingTop: 3, marginLeft: 65}}></Rating>
+                <Text style={styles.ratingNumber}>{this.props.rating}</Text>
+            </View>                    
+            </TouchableOpacity>
         )
     }
 }

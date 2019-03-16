@@ -25,25 +25,25 @@ export default class Venues extends Component {
         return (
             <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
                 <View style={styles.row}>
-                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')}></VCard>
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
+                </View>
+                <View style={styles.row}>
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
 
                 </View>
-                    {/* <VCard bar="St.Louis Bar and Grill" distance="500 m" color="#1abc9c" />
-                    <VCard bar="John's Pub" distance="750 m" color="#2ecc71"/>
-                </View>
                 <View style={styles.row}>
-                    <VCard bar="Burger King" distance="930 m" color="#3498db"/>
-                    <VCard bar="McDonalds" distance="1.2 km" color="#9b59b6"/>
-                </View>
-                <View style={styles.row}>
-                    <VCard bar="The Fifth Social Club" distance="2.5 km" color="#f1c40f"/>
-                    <VCard bar="Brixton" distance="3.7 km" color="#e67e22"/>
-                </View>
-                <View style={styles.row}>
-                    <VCard bar="Harveys" distance="5 km" color="#e74c3c"/>
-                    <VCard bar="Montanas" distance="5.9 km" color="#34495e"/> */}
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
 
-               
+                </View>
+                <View style={styles.row}>
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
+
+                </View>
+                    
             </ScrollView>
         )
     }

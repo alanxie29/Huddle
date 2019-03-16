@@ -1,7 +1,9 @@
 package com.billsheng.huddlespringmvc.controllers;
 
-import com.billsheng.huddlespringmvc.domain.User;
+import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.UserRepository;
+import com.billsheng.huddlespringmvc.services.CustomerService;
+import com.billsheng.huddlespringmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     /*
-       SIGN UP
-    */
+           SIGN UP
+        */
     @PostMapping(path="/signup")
     public @ResponseBody String signup(@RequestParam String email, @RequestParam String password) {
         //get info
@@ -49,7 +56,7 @@ public class UserController {
        PROFILE
     */
      @GetMapping(path="/profile")
-    public @ResponseBody Iterable<User> getUserByEmail() {
-         //get user by email and return user info
+    public @ResponseBody Iterable<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
      }
 }

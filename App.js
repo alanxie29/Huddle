@@ -83,7 +83,7 @@ const HubStack = createMaterialTopTabNavigator(
     {
       activeTintColor: '#272727',
       inactiveTintColor: '#ccc',
-      lazy: true,
+      lazy: false,
       showIcon: true,
       labelStyle: {
         color: 'black',

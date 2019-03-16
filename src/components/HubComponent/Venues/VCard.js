@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Rating, AirbnbRating } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 
 
 export default class VCard extends Component {
@@ -37,7 +37,7 @@ export default class VCard extends Component {
             <Image style={styles.vImage} source={this.props.vImage}></Image>      
                <Text style={styles.title}>{this.props.place}</Text>
                 <Text style={styles.info}>{this.props.date} {this.props.type}</Text>
-                <AirbnbRating defaultRating='4'></AirbnbRating>      
+                <Rating startingValue='4'></Rating>      
             </View>
         )
     }

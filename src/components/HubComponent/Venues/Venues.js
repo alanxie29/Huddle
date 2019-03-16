@@ -6,7 +6,6 @@ export default class Venues extends Component {
     render() {
         const styles = StyleSheet.create({
             holder: {
-                backgroundColor: '#272727',
                 alignItems: 'center',
                 paddingVertical: 20,
                 width: '100%',
@@ -26,7 +25,10 @@ export default class Venues extends Component {
         return (
             <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
                 <View style={styles.row}>
-                    <VCard bar="St.Louis Bar and Grill" distance="500 m" color="#1abc9c" />
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')}></VCard>
+
+                </View>
+                    {/* <VCard bar="St.Louis Bar and Grill" distance="500 m" color="#1abc9c" />
                     <VCard bar="John's Pub" distance="750 m" color="#2ecc71"/>
                 </View>
                 <View style={styles.row}>
@@ -39,8 +41,8 @@ export default class Venues extends Component {
                 </View>
                 <View style={styles.row}>
                     <VCard bar="Harveys" distance="5 km" color="#e74c3c"/>
-                    <VCard bar="Montanas" distance="5.9 km" color="#34495e"/>
-                </View>
+                    <VCard bar="Montanas" distance="5.9 km" color="#34495e"/> */}
+
                
             </ScrollView>
         )

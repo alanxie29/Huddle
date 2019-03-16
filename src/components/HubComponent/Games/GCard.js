@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 
 export default class GCard extends Component {
@@ -12,7 +12,7 @@ export default class GCard extends Component {
                 marginVertical: 20,
                 height: 100,
                 borderWidth: 1,
-                borderColor: '#FFDC7F'
+                borderColor: 'black',
             },
             title: {
                 fontSize: 26,
@@ -23,16 +23,21 @@ export default class GCard extends Component {
                 fontFamily: 'OpenSans-Light',
                 color: '#ccc',
                 fontSize: 16
-
             },
+            vImage: {
+                width: 335,
+                height: 95,
+            }
             
 
         })
 
         return (
             <View style={styles.card}>
+          
                 <Text style={styles.title}>{this.props.game}</Text>
-                <Text style={styles.info}>{this.props.date} • {this.props.type}</Text>
+                <Text style={styles.info}>{this.props.date} {this.props.type}</Text>
+
             </View>
         )
     }

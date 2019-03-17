@@ -1,5 +1,6 @@
 package com.billsheng.huddlespringmvc;
 
+import com.billsheng.huddlespringmvc.services.GameServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

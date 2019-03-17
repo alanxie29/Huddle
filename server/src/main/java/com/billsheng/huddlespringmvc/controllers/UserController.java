@@ -18,14 +18,10 @@ public class UserController {
 
     //This annotation is used to autowire bean on the setter method
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     //Constructor to initialize controller
-    public UserController(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -134,4 +130,4 @@ public class UserController {
 }
 
 //throws clause is used to declare an exception, it works similar to try-catch block
-// throw is used to explicitly throw an exception
+//throw is used to explicitly throw an exception

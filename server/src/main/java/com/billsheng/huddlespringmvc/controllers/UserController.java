@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+//A controller in Spring architecture is the presentation layer
 @Controller
 @RequestMapping(path = "/huddle")
 public class UserController {
+
+    //This annotation is used to autowire bean on the setter method
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
 
+    //Constructor to initialize controller
     public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
         this.userService = userService;
@@ -58,7 +62,7 @@ public class UserController {
                 System.out.println("Failed to set user data from request body " + e);
             }
 
-            userRepository.save(newUser); //save user to db
+            userService.saveUser(newUser); //save user to db
             isSignedUp = true; //user successfully created
         }
         return isSignedUp;
@@ -70,7 +74,7 @@ public class UserController {
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     /*

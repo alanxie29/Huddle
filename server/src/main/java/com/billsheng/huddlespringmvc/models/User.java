@@ -23,6 +23,30 @@ public class User {
     private int gamesWon;
     private Game[] games;
 
+    public User(String firstName, String lastName, String email, String password, String chosenTeam, int gamesPlayed, int gamesWon, Game[] games) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.chosenTeam = chosenTeam;
+        this.gamesPlayed = gamesPlayed;
+        this.gamesWon = gamesWon;
+        this.games = games;
+    }
+
+    public User(String firstName, String lastName, String email, String password, String chosenTeam) {
+        this(firstName, lastName, email, password, chosenTeam, 0, 0, null);
+    }
+
+    public User(int gamesPlayed, int gamesWon, Game[] games) {
+        this.gamesPlayed = gamesPlayed;
+        this.gamesWon = gamesWon;
+        this.games = games;
+    }
+
+    public User() {
+    }
+
     public double winPercentage() {
         return (this.gamesWon / this.getGamesPlayed());
     }

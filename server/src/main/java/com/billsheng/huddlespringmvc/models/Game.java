@@ -13,6 +13,7 @@ import java.util.Date;
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String homeTeam;
     private String awayTeam;
     private Date date;

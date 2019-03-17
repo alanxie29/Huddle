@@ -1,6 +1,7 @@
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+/main/java/com/billsheng/huddlespringmvc/api/keys.java
 
 ### STS ###
 .apt_generated

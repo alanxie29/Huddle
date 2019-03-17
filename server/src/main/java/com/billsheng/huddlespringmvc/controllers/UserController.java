@@ -2,11 +2,12 @@ package com.billsheng.huddlespringmvc.controllers;
 
 import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.UserRepository;
-import com.billsheng.huddlespringmvc.services.CustomerService;
 import com.billsheng.huddlespringmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/huddle")
@@ -14,8 +15,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    @Autowired
+    private UserService userService;
+
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     /*
@@ -50,13 +55,15 @@ public class UserController {
                 //if yes authenticate
                 //if not throw error
             //if not throw error
+        return "placeholder";
     }
 
      /*
        PROFILE
     */
      @GetMapping(path="/profile")
-    public @ResponseBody Iterable<User> findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public @ResponseBody Optional<User> findUserByEmail(@RequestParam String email) {
+         System.out.println(userService.findOneByEmail(email));
+         return userService.findOneByEmail(email);
      }
 }

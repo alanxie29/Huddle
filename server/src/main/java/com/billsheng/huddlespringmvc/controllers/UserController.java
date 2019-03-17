@@ -3,6 +3,8 @@ package com.billsheng.huddlespringmvc.controllers;
 import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.UserRepository;
 import com.billsheng.huddlespringmvc.services.UserService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,19 +26,29 @@ public class UserController {
     }
 
     /*
-           SIGN UP
-        */
+       SIGN UP
+    */
     @PostMapping(path="/signup")
-    public @ResponseBody String signup(@RequestParam String email, @RequestParam String password) {
-        //get info
-        //check if user already exists with email
-            //if yes throw error
-            //else create the account
-        User u1 = new User();
-        u1.setEmail(email);
-        u1.setPassword(password);
-        userRepository.save(u1);
-        return "Saved";
+    public @ResponseBody boolean signup(@RequestBody JSONObject request) {
+        Optional<User> user = null;
+        try {
+            user = userService.findOneByEmail(request.getString("email"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(user.isPresent()) {
+            return false; //user already exists
+        } else {
+            try {
+                User newUser = new User();
+                newUser.setEmail(request.getString("email"));
+                newUser.setPassword(request.getString("password"));
+                userRepository.save(newUser);
+            } catch (Exception e) {
+                System.out.println("Failed to create new user " + e);
+            }
+            return true;
+        }
     }
 
     @GetMapping(path = "/all")
@@ -48,22 +60,29 @@ public class UserController {
        LOGIN
     */
     @PostMapping(path = "/login")
-    public @ResponseBody String login(@RequestParam String email, @RequestParam String password) {
-        //get info
-        //check if account exists with email
-            //if yes try the password
-                //if yes authenticate
-                //if not throw error
-            //if not throw error
-        return "placeholder";
+    public @ResponseBody boolean login(@RequestBody String email, @RequestBody String password) {
+        Optional<User>  user = userService.findOneByEmail(email);
+        try {
+            if(user.isPresent() && user.get().getPassword().equals(password)) {
+               return true;
+            } else {
+                return false; //invalid username or password
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to authenticate user " + e);
+        }
+        return false;
     }
 
      /*
        PROFILE
     */
      @GetMapping(path="/profile")
-    public @ResponseBody Optional<User> findUserByEmail(@RequestParam String email) {
+    public @ResponseBody Optional<User> findUserByEmail(@RequestBody String email) {
          System.out.println(userService.findOneByEmail(email));
          return userService.findOneByEmail(email);
      }
 }
+
+//throws clause is used to declare an exception, it works similar to try-catch block
+// throw is used to explicitly throw an exception

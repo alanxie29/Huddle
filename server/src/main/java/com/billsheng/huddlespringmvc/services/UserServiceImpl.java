@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+//The class that implements the interface must follow the guidelines stated in the interface
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -31,5 +32,24 @@ public class UserServiceImpl implements UserService {
         Example<User> example = Example.of(user, matcher);
 
         return userRepository.findOne(example);
+    }
+
+    @Override
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean saveUser(User user) {
+        boolean userSaved;
+        try {
+            userRepository.save(user);
+            userSaved = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            userSaved = false;
+        }
+        return userSaved;
     }
 }

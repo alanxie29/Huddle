@@ -32,7 +32,8 @@ public class GameServiceImpl implements GameService {
     public void apiFetch() {
 //        JSONObject games = this.getGames();
         //for each game
-        //save to db
+            //save to db
+            //handle games (includes setting inProgress, setting finished)
     }
 
     @Override

@@ -1,13 +1,22 @@
 package com.billsheng.huddlespringmvc.services;
 
 import com.billsheng.huddlespringmvc.models.Game;
+import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.util.Date;
+import java.util.List;
+
 public interface GameService {
-    @Scheduled(fixedRate = 3600000)
-    Game getGamesByDate(); //should return Game[]
+    void apiFetch();
+
+    List<Game> getAllGames();
+
+    List<Game> getGamesByDate(String date); //should return Game[]
 
     Game getGameById(int id);
 
-    void callMySportsFeeds();
+    void getGames(); //should return JSONObject
+
+    //get game result
 }

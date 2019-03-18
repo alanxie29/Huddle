@@ -1,5 +1,6 @@
 package com.billsheng.huddlespringmvc.controllers;
 
+import com.billsheng.huddlespringmvc.models.Game;
 import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.UserRepository;
 import com.billsheng.huddlespringmvc.services.UserService;
@@ -109,8 +110,7 @@ public class UserController {
       PROFILE
     */
     @PostMapping(path = "/profile")
-    public @ResponseBody
-    Optional<User> findUserByEmail(@RequestBody String email) {
+    public @ResponseBody Optional<User> findUserByEmail(@RequestBody String email) {
         JSONObject reqObj = null;
         Optional<User> userFound = null;
 
@@ -126,6 +126,24 @@ public class UserController {
             System.out.println("Failed to get request user " + e);
         }
         return userFound;
+    }
+
+    @PostMapping(path = "/update")
+    public @ResponseBody void updateUser(@RequestBody String request) {
+        JSONObject reqObj = null;
+        Game game = new Game();
+        try {
+            reqObj = new JSONObject(request);
+        } catch (JSONException e) {
+            System.out.println("Could not create JSONObject for request " + e);
+        }
+
+        try {
+            this.userService.updateUserData(reqObj.getString("email"), game, true, true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

@@ -26,7 +26,7 @@ export default class Venues extends Component {
             <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} lat={37.78825}></VCard>
                 </View>
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
@@ -43,7 +43,7 @@ export default class Venues extends Component {
                         info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
 
                 </View>
-                    
+
             </ScrollView>
         )
     }

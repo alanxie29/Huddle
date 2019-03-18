@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
@@ -8,8 +7,9 @@ import Profile from './src/components/ProfileComponent/Profile/Profile'
 import Welcome from './src/components/Auth/Welcome/Welcome';
 import Games from './src/components/HubComponent/Games/Games';
 import Venues from './src/components/HubComponent/Venues/Venues';
-import { Font } from 'expo';
+import { Font, Asset, AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
+
 
 
 // const instructions = Platform.select({
@@ -22,6 +22,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default class App extends Component {
   state = {
     fontLoaded: false,
+    isReady: false,
   };
 
   async componentDidMount() {
@@ -37,6 +38,15 @@ export default class App extends Component {
   }
 
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+        startAsync={this._cacheResourcesAsync}
+        onFinish={() => this.setState({ isReady: true })}
+        onError={console.warn} />
+      )
+    
+    }
     return (
       this.state.fontLoaded ? (
         <AppContainer />
@@ -44,7 +54,20 @@ export default class App extends Component {
     )
   }
 
+  async _cacheResourcesAsync() {
+    const images = [
+      require('./src/assets/images/splash.png')
+    ];
+  
+  
+  const cacheImages = images.map((image) => {
+    return Asset.fromModule(image).downloadAsync();
+  });
+  return Promise.all(cacheImages);
+  }
 }
+
+
 
 
 const AuthStack = createStackNavigator(

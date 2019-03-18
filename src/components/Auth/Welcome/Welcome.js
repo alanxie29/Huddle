@@ -54,7 +54,7 @@ export default class Welcome extends Component {
 
         return (
             <View style={styles.container}>
-                <Image style={styles.logo} source={require('../../../assets/images/logo.png')} />
+                <Image style={styles.logo} source={require('../../../assets/images/splash.png')} />
                 <View style={styles.line} />
                 <Text style={styles.subtitle}> Connecting Football Fans </Text>
                 <Text style={styles.subtitle}> Supporting Local Venues </Text>

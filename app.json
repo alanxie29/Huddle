@@ -9,9 +9,9 @@
       "android"
     ],
     "splash": {
-      "image": "./src/assets/images/logo.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
     },
     "version": "1.0.0",
     "orientation": "portrait",

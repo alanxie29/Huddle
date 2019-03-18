@@ -16,8 +16,10 @@ public interface UserService {
 
     Iterable<User> findAll();
 
+    User findById(int id);
+
     boolean saveUser(User user);
 
-    void updateUserData(String email, Game game, boolean gameWon, boolean gamePlayed);
+    void updateUserData(int id, Game game, boolean gameWon, boolean gamePlayed);
 
 }

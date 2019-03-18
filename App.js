@@ -9,7 +9,7 @@ import Welcome from './src/components/Auth/Welcome/Welcome';
 import Games from './src/components/HubComponent/Games/Games';
 import Venues from './src/components/HubComponent/Venues/Venues';
 import { Font } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -30,7 +30,8 @@ export default class App extends Component {
       'OpenSans-SemiBold': require('./src/assets/fonts/OpenSans-SemiBold.ttf'),
       'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
       'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
-      'Ionicons': require('./src/assets/fonts/Ionicons.ttf'),
+      'ionicons': require('./src/assets/fonts/Ionicons.ttf'),
+      'material': require('./src/assets/fonts/MaterialIcons.ttf')
     });
     this.setState({ fontLoaded: true });
   }

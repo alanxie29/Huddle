@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
-import { Rating } from 'react-native-elements';
-import { BackHandler } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Rating, Header } from 'react-native-elements';
+import { MapView, Marker } from 'expo';
 
 
 
@@ -15,6 +14,7 @@ export default class VCard extends Component {
       setModalVisible(visible) {
         this.setState({modalVisible: visible});
       }
+
 
     render(props) {
         const styles = StyleSheet.create({
@@ -57,11 +57,18 @@ export default class VCard extends Component {
                         color: 'black',
                         marginTop: 3,
                     },
-                    modalClose: {
-                        width: 15,
-                        height: 15,
-                        marginTop: '50%',
-                        marginBottom: '50%',
+                    modal: {
+                        height: 300,
+                        width: '100%'
+                    },
+                    modalTitle: {
+                        fontFamily: 'OpenSans-Bold',
+                        fontSize: 30
+                    },
+                    close: {
+                        position: 'relative',
+                        fontFamily: 'OpenSans-Regular',
+                        marginLeft: 15
                     }
 
                 })
@@ -71,24 +78,22 @@ export default class VCard extends Component {
         <TouchableOpacity style={styles.card} onPress={() => {
             this.setModalVisible(!this.state.modalVisible);
           }}>
-          <View>
+        
           <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {
             Alert.alert('Modal has been closed.');
-            }}> 
-        {/* <TouchableOpacity style={styles.card}
-                onPress={() => {
-                this.setState({modalVisible: false})
-                } }>
-            <Image
-              style={[styles.modalClose]}
-              source={require('../../../assets/images/close.png')} />
-                </TouchableOpacity> */}
+            }}>
+            <View style={styles.modal}>
+             <MapView
+            style={{ flex: 1 }}
+            region={this.props.region}>
+            </MapView>
 
+            <Text style={styles.modalTitle}>{this.props.place}</Text>
+            <Text style={styles.close} onPress={() => this.setModalVisible(!this.state.modalVisible)}>Go Back</Text>
 
-            <Text style={{marginTop: '50%', marginLeft: '50%' }}></Text>
-
-            </Modal>
+ 
             </View>
+            </Modal>
           
             <Image style={styles.vImage} source={this.props.vImage}></Image>                
                <View style={{flexDirection:'row'}}><Text style={styles.title}>{this.props.place}</Text>

@@ -41,24 +41,29 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public User findById(int id) {
+        return userRepository.getOne(id);
+    }
+
     @Modifying
     @Override
-    public void updateUserData(String email, Game game, boolean gameWon, boolean gamePlayed) {
-        Optional<User> updatedUser = this.findOneByEmail(email);
+    public void updateUserData(int id, Game game, boolean gameWon, boolean gamePlayed) {
+        User updatedUser = this.findById(id);
         if(game != null) {
-//            updatedUser.get().addGame(game);
+            updatedUser.addGame(game);
         }
 
         if(gameWon) {
-            updatedUser.get().incrementGamesWon();
+            updatedUser.incrementGamesWon();
 
         }
 
         if(gamePlayed) {
-            updatedUser.get().incrementGamesPlayed();
+            updatedUser.incrementGamesPlayed();
         }
 
-        userRepository.save(updatedUser.get());
+        userRepository.save(updatedUser);
     }
 
     @Override

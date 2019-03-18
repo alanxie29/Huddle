@@ -2,10 +2,7 @@ package com.billsheng.huddlespringmvc.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +14,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String email;
 
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
     private String chosenTeam;
     private int gamesPlayed;
     private int gamesWon;
-//    private ArrayList<Game> games = new ArrayList<>();
+
+    @ManyToOne(targetEntity = Game.class)
+    @JoinColumn()
+    @ElementCollection
+    private List<Game> games = new ArrayList<>();
 
     public User(String firstName, String lastName, String email, String password, String chosenTeam, int gamesPlayed, int gamesWon, ArrayList<Game> games) {
         this.firstName = firstName;
@@ -35,7 +36,7 @@ public class User {
         this.chosenTeam = chosenTeam;
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
-//        this.games = games;
+        this.games = games;
     }
 
     public User(String firstName, String lastName, String email, String password, String chosenTeam) {
@@ -45,7 +46,7 @@ public class User {
     public User(int gamesPlayed, int gamesWon, ArrayList<Game> games) {
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
-//        this.games = games;
+        this.games = games;
     }
 
     public User() {
@@ -123,5 +124,5 @@ public class User {
 
     public void incrementGamesWon() {this.gamesWon++;}
 
-//    public void addGame(Game game) {this.games.add(game); }
+    public void addGame(Game game) {this.games.add(game); }
 }

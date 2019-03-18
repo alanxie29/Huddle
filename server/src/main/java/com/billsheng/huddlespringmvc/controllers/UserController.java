@@ -139,7 +139,7 @@ public class UserController {
         }
 
         try {
-            this.userService.updateUserData(reqObj.getString("email"), game, true, true);
+            this.userService.updateUserData(reqObj.getInt("id"), game, reqObj.getBoolean("gameWon"), reqObj.getBoolean("gamePlayed"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

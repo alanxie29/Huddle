@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 //User Entity/Model
 @Data
@@ -15,16 +17,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String email;
+
     private String firstName;
     private String lastName;
-    private String email;
     private String password;
     private String chosenTeam;
     private int gamesPlayed;
     private int gamesWon;
-    private Game[] games;
+//    private ArrayList<Game> games = new ArrayList<>();
 
-    public User(String firstName, String lastName, String email, String password, String chosenTeam, int gamesPlayed, int gamesWon, Game[] games) {
+    public User(String firstName, String lastName, String email, String password, String chosenTeam, int gamesPlayed, int gamesWon, ArrayList<Game> games) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -32,17 +35,17 @@ public class User {
         this.chosenTeam = chosenTeam;
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
-        this.games = games;
+//        this.games = games;
     }
 
     public User(String firstName, String lastName, String email, String password, String chosenTeam) {
         this(firstName, lastName, email, password, chosenTeam, 0, 0, null);
     }
 
-    public User(int gamesPlayed, int gamesWon, Game[] games) {
+    public User(int gamesPlayed, int gamesWon, ArrayList<Game> games) {
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
-        this.games = games;
+//        this.games = games;
     }
 
     public User() {
@@ -108,6 +111,8 @@ public class User {
         this.gamesPlayed = gamesPlayed;
     }
 
+    public void incrementGamesPlayed() {this.gamesPlayed++;}
+
     public int getGamesWon() {
         return gamesWon;
     }
@@ -115,4 +120,8 @@ public class User {
     public void setGamesWon(int gamesWon) {
         this.gamesWon = gamesWon;
     }
+
+    public void incrementGamesWon() {this.gamesWon++;}
+
+//    public void addGame(Game game) {this.games.add(game); }
 }

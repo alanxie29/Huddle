@@ -1,9 +1,11 @@
 package com.billsheng.huddlespringmvc.services;
 
+import com.billsheng.huddlespringmvc.models.Game;
 import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.UserRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -37,6 +39,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public Iterable<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Modifying
+    @Override
+    public void updateUserData(String email, Game game, boolean gameWon, boolean gamePlayed) {
+        Optional<User> updatedUser = this.findOneByEmail(email);
+        if(game != null) {
+//            updatedUser.get().addGame(game);
+        }
+
+        if(gameWon) {
+            updatedUser.get().incrementGamesWon();
+
+        }
+
+        if(gamePlayed) {
+            updatedUser.get().incrementGamesPlayed();
+        }
+
+        userRepository.save(updatedUser.get());
     }
 
     @Override

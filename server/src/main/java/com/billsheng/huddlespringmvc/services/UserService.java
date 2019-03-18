@@ -1,5 +1,6 @@
 package com.billsheng.huddlespringmvc.services;
 
+import com.billsheng.huddlespringmvc.models.Game;
 import com.billsheng.huddlespringmvc.models.User;
 
 import java.util.Optional;
@@ -10,7 +11,13 @@ import java.util.Optional;
 //An interface can be implemented a seen in UserServiceImpl
 public interface UserService {
     boolean canAuthenticate();
+
     Optional<User> findOneByEmail(String email);
+
     Iterable<User> findAll();
+
     boolean saveUser(User user);
+
+    void updateUserData(String email, Game game, boolean gameWon, boolean gamePlayed);
+
 }

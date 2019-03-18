@@ -10,6 +10,7 @@ import Games from './src/components/HubComponent/Games/Games';
 import Venues from './src/components/HubComponent/Venues/Venues';
 import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
+import AuthLoading from './src/components/AuthLoading/AuthLoading'
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -145,12 +146,13 @@ const AppStack = createBottomTabNavigator(
 
 const AppContainer = createAppContainer(createSwitchNavigator(
   {
+    AuthLoading: AuthLoading, 
     App: AppStack,
     Auth: AuthStack,
     Hub: HubStack
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'AuthLoading'
   }
 ));
 

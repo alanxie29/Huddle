@@ -17,6 +17,4 @@ public interface GameService {
     Game getGameById(int id);
 
     void getGames(); //should return JSONObject
-
-    //get game result
 }

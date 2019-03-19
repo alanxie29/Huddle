@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import Login from './src/components/Auth/Login/Login';
 import SignUp from './src/components/Auth/SignUp/SignUp';
@@ -10,6 +9,7 @@ import Games from './src/components/HubComponent/Games/Games';
 import Venues from './src/components/HubComponent/Venues/Venues';
 import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
+import AuthLoading from './src/components/AuthLoading/AuthLoading'
 
 
 // const instructions = Platform.select({
@@ -146,12 +146,13 @@ const AppStack = createBottomTabNavigator(
 
 const AppContainer = createAppContainer(createSwitchNavigator(
   {
+    AuthLoading: AuthLoading, 
     App: AppStack,
     Auth: AuthStack,
     Hub: HubStack
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'AuthLoading'
   }
 ));
 

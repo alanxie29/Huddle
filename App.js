@@ -11,6 +11,7 @@ import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import AuthLoading from './src/components/AuthLoading/AuthLoading'
 
+
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
 //   android:
@@ -31,7 +32,6 @@ export default class App extends Component {
       'OpenSans-Bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
       'OpenSans-ExtraBold': require('./src/assets/fonts/OpenSans-ExtraBold.ttf'),
       'ionicons': require('./src/assets/fonts/Ionicons.ttf'),
-      'material': require('./src/assets/fonts/MaterialIcons.ttf')
     });
     this.setState({ fontLoaded: true });
   }

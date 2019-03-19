@@ -35,20 +35,21 @@ export default class Venues extends Component {
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
                         info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} region={this.state.region}></VCard>
-                </View>
-                <View style={styles.row}>
-                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
 
                 </View>
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
+                        info="$$$ ⋅ Burgers and Comfort Food" rating='(56)' distance={3.3}></VCard>
 
                 </View>
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3}></VCard>
+                        info="$$$ ⋅ Burgers and Comfort Food" rating='(56)' distance={3.3}></VCard>
+
+                </View>
+                <View style={styles.row}>
+                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
+                        info="$$$ ⋅ Burgers and Comfort Food" rating='(56)' distance={3.3}></VCard>
 
                 </View>
                     

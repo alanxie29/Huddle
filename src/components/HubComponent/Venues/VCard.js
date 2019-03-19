@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
+
 import { Rating, Header } from 'react-native-elements';
 import { MapView, Marker } from 'expo';
 
@@ -21,8 +22,7 @@ export default class VCard extends Component {
                     card: {
                         width: 340,
                         marginVertical: 20,
-                        height: 150,
-
+                        height: 150
                     },
                     title: {
                         fontSize: 16,

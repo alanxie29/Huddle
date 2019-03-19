@@ -8,77 +8,59 @@ export default class GCard extends Component {
             card: {
                 width: 340,
                 marginVertical: 20,
-                height: 150
+                height: 150,
             },
             title: {
                 fontSize: 16,
                 fontFamily: 'OpenSans-Regular',
                 color: 'black',
                 paddingTop: 3,
-
             },
             info: {
                 fontFamily: 'OpenSans-Light',
                 color: '#adadad',
                 fontSize: 12,
                 paddingTop: 3,
-
             },
             homeImg: {
                 width: 150,
-                height: 60,
+                height: 95,
                 marginBottom: 5,
                 marginRight: 80,
             },
             awayImg: {
                 width: 150,
-                height: 60,
+                height: 95,
                 marginBottom: 5,
                 marginLeft: 80,
             },
-            ratingNumber: {
-                color: '#adadad',
-                marginLeft: 2,
-                fontSize: 14,
-                fontFamily: 'OpenSans-Light'
-            },
-            distance: {
-                marginLeft: 135,
-                fontFamily: 'OpenSans-Regular',
-                fontSize: 14,
-                color: 'black',
-                marginTop: 3,
-            },
-            modal: {
-                height: 300,
-                width: '100%'
-            },
-            modalTitle: {
-                fontFamily: 'OpenSans-Bold',
-                fontSize: 30
-            },
-            close: {
-                position: 'relative',
-                fontFamily: 'OpenSans-Regular',
-                marginLeft: 15
-            },
-            banner: {
-                flexDirection:'row'
+            img: {
+                width: 95,
+                height: 95
             }
-
         })
 
         return (
-            <TouchableOpacity>
-            <View style={styles.banner}>
-            <Image style={styles.homeImg} source={this.props.homeImg}></Image>
-            <Image style={styles.awayImg} source={this.props.awayImg}></Image>
-            </View>
-            <View style={{flexDirection:'row'}}><Text style={styles.title}>{this.props.homeTeam}</Text>
-            </View>
+            <TouchableOpacity style={styles.card}>
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={styles.img}>
+                        <Image style={styles.homeImg} source={this.props.homeImg} resizeMode="center"></Image>
+                    </View>
+                    <View style={styles.img}>
+                        <Image style={styles.awayImg} source={this.props.awayImg} resizeMode="center"></Image>
+                    </View>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={styles.title}>{this.props.homeTeam}</Text>
+                    <Text style={styles.title}> vs </Text>
+                    <Text style={styles.title}>{this.props.awayTeam}</Text>
+                </View>
+                <View>
+                    <Text style={styles.info}>{this.props.date}</Text>
+                    <Text style={styles.info}>{this.props.location}</Text>
+                </View>
 
-
-         </TouchableOpacity>
+            </TouchableOpacity>
         )
     }
 }

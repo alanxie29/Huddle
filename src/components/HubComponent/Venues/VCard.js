@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 
-import { Rating, Header } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 import { MapView, Marker } from 'expo';
 
 

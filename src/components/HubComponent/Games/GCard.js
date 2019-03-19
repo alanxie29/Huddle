@@ -7,38 +7,78 @@ export default class GCard extends Component {
         const styles = StyleSheet.create({
             card: {
                 width: 340,
-                borderRadius: 20,
-                padding: 10,
                 marginVertical: 20,
-                height: 100,
-                borderWidth: 1,
-                borderColor: 'black',
+                height: 150
             },
             title: {
-                fontSize: 26,
-                fontFamily: 'OpenSans-Light',
-                color: 'white'
+                fontSize: 16,
+                fontFamily: 'OpenSans-Regular',
+                color: 'black',
+                paddingTop: 3,
+
             },
             info: {
                 fontFamily: 'OpenSans-Light',
-                color: '#ccc',
-                fontSize: 16
+                color: '#adadad',
+                fontSize: 12,
+                paddingTop: 3,
+
             },
-            vImage: {
-                width: 335,
-                height: 95,
+            homeImg: {
+                width: 150,
+                height: 60,
+                marginBottom: 5,
+                marginRight: 80,
+            },
+            awayImg: {
+                width: 150,
+                height: 60,
+                marginBottom: 5,
+                marginLeft: 80,
+            },
+            ratingNumber: {
+                color: '#adadad',
+                marginLeft: 2,
+                fontSize: 14,
+                fontFamily: 'OpenSans-Light'
+            },
+            distance: {
+                marginLeft: 135,
+                fontFamily: 'OpenSans-Regular',
+                fontSize: 14,
+                color: 'black',
+                marginTop: 3,
+            },
+            modal: {
+                height: 300,
+                width: '100%'
+            },
+            modalTitle: {
+                fontFamily: 'OpenSans-Bold',
+                fontSize: 30
+            },
+            close: {
+                position: 'relative',
+                fontFamily: 'OpenSans-Regular',
+                marginLeft: 15
+            },
+            banner: {
+                flexDirection:'row'
             }
-            
 
         })
 
         return (
-            <View style={styles.card}>
-          
-                <Text style={styles.title}>{this.props.game}</Text>
-                <Text style={styles.info}>{this.props.date} {this.props.type}</Text>
-
+            <TouchableOpacity>
+            <View style={styles.banner}>
+            <Image style={styles.homeImg} source={this.props.homeImg}></Image>
+            <Image style={styles.awayImg} source={this.props.awayImg}></Image>
             </View>
+            <View style={{flexDirection:'row'}}><Text style={styles.title}>{this.props.homeTeam}</Text>
+            </View>
+
+
+         </TouchableOpacity>
         )
     }
 }

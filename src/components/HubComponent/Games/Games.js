@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import GCard from './GCard';
+import axios from 'axios';
 
 export default class Games extends Component {
     constructor() {
         super();
         this.state = {games: [
             {
-                name: 'bill'
+                name: 'bill',
+                homeTeam: 'Patriots',
+                awayTeam: '',
+                homeImg: require('../../../assets/images/patriots.jpg'),
+                awayImg: require('../../../assets/images/rams.jpg'),
+                id: 1
             },
             {
-                name: 'sheng'
+                name: 'sheng',
+                image: null,
+                id: 2
             }
         ]}
+    }
+
+    componentDidMount() {
+        this.getGames();
+    }
+
+    getGames = async () => {
+        event.preventDefault()
+
+        await axios.get('localhost:8081/')
     }
 
     render() {
@@ -31,10 +49,10 @@ export default class Games extends Component {
             }
         })
 
-        console.log(this.state.games)
         return (
             <ScrollView contentContainerStyle={styles.holder}>
-               {games.map(game => <Text>{game.name}</Text>)}
+               {games.map(game => 
+               <GCard key={game.id} homeImg={game.homeImg} awayImg={game.awayImg} homeTeam={game.homeTeam}></GCard>)}
             </ScrollView>
         )
     }

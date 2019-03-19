@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 
 import { Rating, Header } from 'react-native-elements';
-import { MapView, Marker } from 'expo';
-
+import { MapView } from 'expo';
+import { Marker, Polyline } from 'react-native-maps';
 
 
 
@@ -71,10 +71,8 @@ export default class VCard extends Component {
                 position: 'relative',
                 fontFamily: 'OpenSans-Regular',
                 marginLeft: 15
-            }
-
+            },
         })
-
         return (
 
             <TouchableOpacity style={styles.card} onPress={() => {
@@ -85,9 +83,26 @@ export default class VCard extends Component {
                     Alert.alert('Modal has been closed.');
                 }}>
                     <View style={styles.modal}>
-                        <MapView
-                            style={{ flex: 1 }}
-                            region={this.props.region}>
+                        <MapView style={{ flex: 1 }} region={this.props.region}>
+                            <Marker coordinate={{
+                                latitude: 43.8590,
+                                longitude: -79.3152,
+                            }} />
+                            <Marker coordinate={{
+                                latitude: 43.877682,
+                                longitude: -79.289383,
+                            }} />
+                            <Polyline
+                                coordinates={[
+                                    { latitude: 43.8590, longitude: -79.3152 },
+                                    { latitude: 43.877682, longitude: -79.289383 },
+                                ]}
+                                strokeColor="#3498db"
+                                strokeColors={[
+                                    "#3498db"
+                                ]}
+                                strokeWidth={6}
+                            />
                         </MapView>
 
                         <Text style={styles.modalTitle}>{this.props.place}</Text>

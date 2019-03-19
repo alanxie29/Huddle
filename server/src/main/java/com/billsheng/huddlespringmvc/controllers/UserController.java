@@ -14,7 +14,7 @@ import java.util.Optional;
 
 //A controller in Spring architecture is the presentation layer
 @Controller
-@RequestMapping(path = "/huddle")
+@RequestMapping(path = "/user")
 public class UserController {
 
     //This annotation is used to autowire bean on the setter method
@@ -30,8 +30,7 @@ public class UserController {
        SIGN UP
     */
     @PostMapping(path = "/signup")
-    public @ResponseBody
-    boolean signup(@RequestBody String request) {
+    public @ResponseBody boolean signup(@RequestBody String request) {
         Optional<User> user = null; //initializing user variable
         JSONObject reqObj = null; //initializing json variable
         boolean isSignedUp = false;
@@ -69,8 +68,7 @@ public class UserController {
        GET ALL USERS
     */
     @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<User> getAllUsers() {
+    public @ResponseBody Iterable<User> getAllUsers() {
         return userService.findAll();
     }
 
@@ -78,8 +76,7 @@ public class UserController {
        LOGIN
     */
     @PostMapping(path = "/login")
-    public @ResponseBody
-    boolean login(@RequestBody String request) {
+    public @ResponseBody boolean login(@RequestBody String request) {
         JSONObject reqObj = null; //initializing json variable
         Optional<User> user = null; //initializing user variable
         boolean isAuthenticated = false;

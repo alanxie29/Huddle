@@ -2,6 +2,7 @@ package com.billsheng.huddlespringmvc.services;
 
 import com.billsheng.huddlespringmvc.api.Keys;
 import com.billsheng.huddlespringmvc.models.Game;
+import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.GameRepository;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONObject;
@@ -13,7 +14,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,12 +27,13 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Scheduled(fixedRate = 10000) //for testing
+    @Scheduled(fixedRate = 1000) //for testing
 //    @Scheduled(fixedRate = ???) run at the beginning of every season
     public void apiFetch() {
 //        JSONObject games = this.getGames();
         //for each game
-        //save to db
+            //save to db
+            //handle games (includes setting inProgress, setting finished)
     }
 
     @Override
@@ -59,9 +60,23 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void getGames() {
+    public void addHomePick(User user, int gameId) {
+        Game selectedGame = gameRepository.getOne(gameId);
+        selectedGame.getHomeTeamPicks().add(user);
+    }
+
+    @Override
+    public void addAwayPick(User user, int gameId) {
+        Game selectedGame = gameRepository.getOne(gameId);
+        selectedGame.getAwayTeamPicks().add(user);
+    }
+
+
+    @Override
+    public String getGames(String type, String date) {
+        String gameData = null;
         try {
-            URL url = new URL("https://api.mysportsfeeds.com/v2.1/pull/nfl/2018-regular/date/20180916/odds_gamelines.json");
+            URL url = new URL("https://api.mysportsfeeds.com/v2.1/pull/nfl/" + type + "/date/" + date + "/games.json");
             String binaryData = Keys.getAPI_KEY() + ":MYSPORTSFEEDS";
             byte[] authEncBytes = Base64.encodeBase64(binaryData.getBytes());
             String authStringEnc = new String(authEncBytes);
@@ -70,15 +85,20 @@ public class GameServiceImpl implements GameService {
             connection.setDoOutput(true);
             connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
             InputStream content = connection.getInputStream();
-            BufferedReader in =
-                    new BufferedReader(new InputStreamReader(content));
+            BufferedReader in = new BufferedReader(new InputStreamReader(content));
+
+            StringBuilder sb = new StringBuilder();
+
             String line;
             while ((line = in.readLine()) != null) {
-                System.out.println(line);
+                sb.append(line);
             }
+            gameData = sb.toString();
+
+            System.out.println(gameData);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //return json object
+        return gameData;
     }
 }

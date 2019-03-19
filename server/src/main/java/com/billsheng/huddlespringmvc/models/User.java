@@ -23,8 +23,7 @@ public class User {
     private int gamesPlayed;
     private int gamesWon;
 
-    @ManyToOne(targetEntity = Game.class)
-    @JoinColumn()
+    @OneToMany(cascade = CascadeType.ALL)
     @ElementCollection
     private List<Game> games = new ArrayList<>();
 

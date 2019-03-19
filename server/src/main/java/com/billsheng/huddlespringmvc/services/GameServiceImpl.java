@@ -3,8 +3,10 @@ package com.billsheng.huddlespringmvc.services;
 import com.billsheng.huddlespringmvc.api.Keys;
 import com.billsheng.huddlespringmvc.models.Game;
 import com.billsheng.huddlespringmvc.repositories.GameRepository;
+import com.google.gson.Gson;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONObject;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Scheduled(fixedRate = 10000) //for testing
+    @Scheduled(fixedRate = 1000) //for testing
 //    @Scheduled(fixedRate = ???) run at the beginning of every season
     public void apiFetch() {
 //        JSONObject games = this.getGames();
@@ -60,9 +62,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void getGames() {
+    public JSONObject getGames(String type, String date) {
+        JSONObject gameData = null;
         try {
-            URL url = new URL("https://api.mysportsfeeds.com/v2.1/pull/nfl/2018-regular/date/20180916/odds_gamelines.json");
+            URL url = new URL("https://api.mysportsfeeds.com/v2.1/pull/nfl/" + type + "/date/" + date + "/games.json");
             String binaryData = Keys.getAPI_KEY() + ":MYSPORTSFEEDS";
             byte[] authEncBytes = Base64.encodeBase64(binaryData.getBytes());
             String authStringEnc = new String(authEncBytes);
@@ -71,15 +74,17 @@ public class GameServiceImpl implements GameService {
             connection.setDoOutput(true);
             connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
             InputStream content = connection.getInputStream();
-            BufferedReader in =
-                    new BufferedReader(new InputStreamReader(content));
+            BufferedReader in = new BufferedReader(new InputStreamReader(content));
+            StringBuilder jsonString = new StringBuilder();
             String line;
             while ((line = in.readLine()) != null) {
-                System.out.println(line);
+                jsonString.append(line);
             }
+            gameData = new JSONObject(jsonString.toString());
+            System.out.println(line);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //return json object
+        return gameData;
     }
 }

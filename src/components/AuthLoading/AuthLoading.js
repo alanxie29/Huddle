@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-class AuthLoadingScreen extends React.Component {
+export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();

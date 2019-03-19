@@ -5,6 +5,8 @@ import com.billsheng.huddlespringmvc.models.Game;
 import com.billsheng.huddlespringmvc.models.User;
 import com.billsheng.huddlespringmvc.repositories.GameRepository;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -27,13 +29,23 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Scheduled(fixedRate = 1000) //for testing
+    @Scheduled(fixedRate = 30000) //for testing
 //    @Scheduled(fixedRate = ???) run at the beginning of every season
-    public void apiFetch() {
-//        JSONObject games = this.getGames();
-        //for each game
+    public void apiFetch() throws JSONException {
+        String apiData = this.getGames("2019-playoff", "20190113");
+        JSONArray jsonGameArray = new JSONObject(apiData).getJSONArray("games");
+        System.out.println(jsonGameArray.getJSONObject(0));
+        String idk = jsonGameArray.getJSONObject(0).getJSONObject("schedule").getString("scheduleStatus");
+        System.out.println(idk);
+
+
+        for(int gameCounter = 0; gameCounter < jsonGameArray.length(); gameCounter++) {
+
+
+
             //save to db
             //handle games (includes setting inProgress, setting finished)
+        }
     }
 
     @Override
@@ -86,16 +98,12 @@ public class GameServiceImpl implements GameService {
             connection.setRequestProperty("Authorization", "Basic " + authStringEnc);
             InputStream content = connection.getInputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(content));
-
             StringBuilder sb = new StringBuilder();
-
             String line;
             while ((line = in.readLine()) != null) {
                 sb.append(line);
             }
             gameData = sb.toString();
-
-            System.out.println(gameData);
         } catch (Exception e) {
             e.printStackTrace();
         }

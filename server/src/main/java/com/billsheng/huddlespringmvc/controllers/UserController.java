@@ -146,3 +146,5 @@ public class UserController {
 
 //throws clause is used to declare an exception, it works similar to try-catch block
 //throw is used to explicitly throw an exception
+
+

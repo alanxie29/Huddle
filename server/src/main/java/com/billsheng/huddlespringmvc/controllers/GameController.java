@@ -5,6 +5,7 @@ import com.billsheng.huddlespringmvc.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -26,5 +27,10 @@ public class GameController {
     @GetMapping(path = "/games/{id}")
     public Game getGamesByDate(@PathVariable int id) {
         return this.gameService.getGameById(id);
+    }
+
+    @GetMapping(path = "/games/test")
+    public JSONObject getGamesByDate() {
+        return this.gameService.getGames("2019-playoff", "20190113");
     }
 }

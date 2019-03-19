@@ -16,5 +16,5 @@ public interface GameService {
 
     Game getGameById(int id);
 
-    void getGames(); //should return JSONObject
+    JSONObject getGames(String type, String date);
 }

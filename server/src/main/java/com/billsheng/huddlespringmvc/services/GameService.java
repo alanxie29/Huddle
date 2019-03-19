@@ -1,6 +1,7 @@
 package com.billsheng.huddlespringmvc.services;
 
 import com.billsheng.huddlespringmvc.models.Game;
+import com.billsheng.huddlespringmvc.models.User;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -16,5 +17,10 @@ public interface GameService {
 
     Game getGameById(int id);
 
-    void getGames(); //should return JSONObject
+    String getGames(String type, String date);
+
+    void addHomePick(User user, int gameId);
+
+    void addAwayPick(User user, int gameId);
+
 }

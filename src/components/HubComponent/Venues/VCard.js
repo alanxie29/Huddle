@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-na
 import { Rating } from 'react-native-elements';
 import { MapView } from 'expo';
 import { Marker, Polyline } from 'react-native-maps'
-
+import polyline from '@mapbox/polyline';
 
 
 export default class VCard extends Component {
@@ -43,17 +43,15 @@ export default class VCard extends Component {
                 startAddress: responseJSON.routes[0].legs[0].start_address,
                 endAddress: responseJSON.routes[0].legs[0].end_address
             })
-
-
-            // let points = polyline.decode(responseJSON.routes[0].overview_polyline.points);
-            // let decodedCoords = points.map((point, index) => {
-            //     return {
-            //         latitude: point[0],
-            //         longitude: point[1]
-            //     }
-            // })
-            // this.setState({ coords: decodedCords })
-            // return coords
+            let points = polyline.decode(responseJSON.routes[0].overview_polyline.points);
+            let coords = points.map((point, index) => {
+                return {
+                    latitude: point[0],
+                    longitude: point[1]
+                }
+            })
+            this.setState({ coords: coords })
+            return coords
 
         } catch (error) {
             alert(error)
@@ -153,10 +151,10 @@ export default class VCard extends Component {
                                 latitude: 43.877682,
                                 longitude: -79.289383,
                             }} />
-                            {/* <Polyline
+                            <Polyline
                                 coordinates={this.state.coords}
                                 strokeWidth={2}
-                                strokeColor="red" /> */}
+                                strokeColor="red" />
                         </MapView>
 
                         <View style={styles.modalCard}>

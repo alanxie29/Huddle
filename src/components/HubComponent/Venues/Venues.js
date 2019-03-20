@@ -4,12 +4,18 @@ import VCard from './VCard';
 
 export default class Venues extends Component {
     state= {
-        region: {
+        region1: {
             latitude: 43.8590,
             longitude: -79.3152,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
+          region2: {
+            latitude: 43.854428,
+            longitude: -79.337036,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }
     }
     render() {
         const styles = StyleSheet.create({
@@ -34,12 +40,12 @@ export default class Venues extends Component {
             <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} region={this.state.region}></VCard>
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} region={this.state.region1}></VCard>
 
                 </View>
                 <View style={styles.row}>
-                    <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating='(56)' distance={3.3}></VCard>
+                    <VCard place='St. Louis Bar & Grill' vImage={require('../../../assets/images/stlouis.jpg')} stars={3.5}
+                        info="$$ ⋅ Burgers and Wings" rating={102} distance={4.9} region={this.state.region2}></VCard>
 
                 </View>
                 <View style={styles.row}>

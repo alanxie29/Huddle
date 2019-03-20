@@ -30,6 +30,7 @@ export default class Profile extends React.Component {
 
   getUserData = async () => {
     event.preventDefault();
+    // await axios.post('localhost:8081/profile')
 
     await axios
       .get("localhost:8081/profile")

@@ -3,14 +3,18 @@ import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 
+const emailContext = React.createContext('');
+
 export default class Login extends Component {
-    state = {
+    constructor(props) {
+        super(props);
+    this.state = {
         email: '',
         password: '',
         error: '',
         loading: ''
     }
-
+}
     loginRequest() {
         event.preventDefault();
 

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 
 export default class GCard extends Component {
-    render(props) {
+    render() {
         const styles = StyleSheet.create({
             card: {
                 width: 340,

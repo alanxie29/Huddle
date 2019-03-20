@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, Text } from 'react-native';
 import GCard from './GCard';
 import axios from 'axios';
+import Game from '../../../models/Game';
 
 export default class Games extends Component {
     constructor() {
         super();
         this.state = {
+            gamesData: [],
             games: [
                 {
                     name: 'bill',
@@ -38,19 +40,33 @@ export default class Games extends Component {
                     location: '2:30 PM @ China Stadium',
                     id: 3
                 },
-            ]
+            ],
+            today: "20190113"
         }
     }
-    /*
-        componentDidMount() {
-            this.getGames();
-        }
-    */
-    getGames = async () => {
-        event.preventDefault()
 
-        await axios.get('localhost:8081/')
+    componentDidMount() {
+        // this.getToday()
+        // this.getGames();
     }
+
+    getGames = async () => {
+        event.preventDefault();
+
+        await axios.get(`localhost:8081/game/${this.state.today}`)
+            .then(data => data.array.forEach(game => {
+                gameObj = new Game(game.id, game.homeTeam, game.awayTeam, game.date, game.location, game.bettingOdds, game.inProgress);
+                this.setState({gamesData: [...this.state.gamesData, gameObj]})
+            }));
+    }
+
+    // getToday = async () => {
+    //     var today = new Date();
+    //     date = (today.getFullYear() + "" + ("0" + (today.getMonth() + 1)).slice(-2) + "" + today.getDate());
+    //     const dateString = date.toString();
+    //     this.setState({today: dateString}) 
+
+    // }
 
     render() {
         let games = this.state.games
@@ -70,6 +86,7 @@ export default class Games extends Component {
 
         return (
             <ScrollView contentContainerStyle={styles.holder}>
+                <Text>{this.state.today}</Text>
                 {games.map(game =>
                     <GCard key={game.id} homeImg={game.homeImg} awayImg={game.awayImg} homeTeam={game.homeTeam} awayTeam={game.awayTeam} date={game.date} location={game.location}></GCard>)}
             </ScrollView>

@@ -86,7 +86,6 @@ export default class Games extends Component {
 
         return (
             <ScrollView contentContainerStyle={styles.holder}>
-                <Text>{this.state.today}</Text>
                 {games.map(game =>
                     <GCard key={game.id} homeImg={game.homeImg} awayImg={game.awayImg} homeTeam={game.homeTeam} awayTeam={game.awayTeam} date={game.date} location={game.location}></GCard>)}
             </ScrollView>

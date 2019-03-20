@@ -3,22 +3,31 @@ import { Text, View, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 
+
 export default class SignUp extends Component {
-    state = {
-        name: '',
+    constructor(props) {
+        super(props)
+    
+    this.state = {
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
+        chosenTeam: '',
         error: '',
         loading: ''
     }
+}
 
     signUpRequest() {
-        event.preventDefault();
+        ev.preventDefault();
 
         const userSignUpDetails = {
-            userSignUpEmail: this.state.email,
-            userSignUpPassword: this.state.password,
-            userSignUpName: this.state.name
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            LastName: this.state.lastName,
+            chosenTeam: this.state.chosenTeam
         }
 
         axios.post('localhost:8081/signup', {userSignUpDetails})
@@ -93,9 +102,13 @@ export default class SignUp extends Component {
                 <Ionicons name="ios-arrow-round-back" size={40} color="white" style={styles.back} onPress={() => this.props.navigation.navigate('Welcome')}></Ionicons>
                 <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
                 <Text style={styles.subtitle}>These can be adjusted in your settings</Text>
-                <TextInput value={this.state.name} onChangeText={input => this.setState({ name: input })} placeholder="Full Name" autoCapitalize="words" style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.firstName} onChangeText={input => this.setState({ firstName: input })} placeholder="First Name" autoCapitalize="words" style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.lastName} onChangeText={input => this.setState({ lastName: input })} placeholder="Last Name" autoCapitalize="words" style={styles.textInput} placeholderTextColor="white"/>
                 <TextInput value={this.state.email} onChangeText={input => this.setState({ email: input })} placeholder="Email" style={styles.textInput} placeholderTextColor="white"/>
                 <TextInput value={this.state.password} onChangeText={input => this.setState({ password: input })} placeholder="Password" secureTextEntry={true} style={styles.textInput} placeholderTextColor="white"/>
+                <TextInput value={this.state.chosenTeam} onChangeText={input => this.setState({ chosenTeam: input })} placeholder="Favourite Team" style={styles.textInput} placeholderTextColor="white"/>
+
+
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home') && this.signUpRequest.bind(this)} style={styles.button}>
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
@@ -103,3 +116,4 @@ export default class SignUp extends Component {
         )
     }
 }
+

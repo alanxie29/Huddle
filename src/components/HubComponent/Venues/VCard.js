@@ -12,12 +12,13 @@ export default class VCard extends Component {
         super(props)
         this.state = {
             modalVisible: false,
-            coords: [],
             summary: '',
             duration: '',
             distance: '',
             startAddress: '',
             endAddress: '',
+            coords: [],
+
         }
     }
 
@@ -35,17 +36,16 @@ export default class VCard extends Component {
             let response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${direction_API_key}`)
             let responseJSON = await response.json();
 
-            this.setState({ summary: responseJSON.routes[0].summary })
-            this.setState({ duration: responseJSON.routes[0].legs[0].duration.text })
-            this.setState({ distance: responseJSON.routes[0].legs[0].distance.text })
-            this.setState({ startAddress: responseJSON.routes[0].legs[0].start_address })
-            this.setState({ endAddress: responseJSON.routes[0].legs[0].end_address })
-            console.log(this.state.summary)
-            console.log(this.state.duration)
-            console.log(this.state.distance)
-            console.log(this.state.startAddress)
-            console.log(this.state.endAddress)
-            // let points = Polyline.decode(responseJSON.routes[0].overview_polyline.points);
+            this.setState({
+                summary: responseJSON.routes[0].summary,
+                duration: responseJSON.routes[0].legs[0].duration.text,
+                distance: responseJSON.routes[0].legs[0].distance.text,
+                startAddress: responseJSON.routes[0].legs[0].start_address,
+                endAddress: responseJSON.routes[0].legs[0].end_address
+            })
+
+
+            // let points = polyline.decode(responseJSON.routes[0].overview_polyline.points);
             // let decodedCoords = points.map((point, index) => {
             //     return {
             //         latitude: point[0],
@@ -54,6 +54,7 @@ export default class VCard extends Component {
             // })
             // this.setState({ coords: decodedCords })
             // return coords
+
         } catch (error) {
             alert(error)
             return error

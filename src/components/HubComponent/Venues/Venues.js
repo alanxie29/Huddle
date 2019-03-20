@@ -3,19 +3,19 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import VCard from './VCard';
 
 export default class Venues extends Component {
-    state= {
+    state = {
         region1: {
             latitude: 43.8590,
             longitude: -79.3152,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          },
-          region2: {
+        },
+        region2: {
             latitude: 43.854428,
             longitude: -79.337036,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
-          }
+        }
     }
     render() {
         const styles = StyleSheet.create({
@@ -40,7 +40,7 @@ export default class Venues extends Component {
             <ScrollView contentContainerStyle={styles.holder} indicatorStyle="white">
                 <View style={styles.row}>
                     <VCard place='Smash Kitchen & Bar' vImage={require('../../../assets/images/smashbar.jpg')} stars={4.2}
-                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} region={this.state.region1}></VCard>
+                        info="$$$ ⋅ Burgers and Comfort Food" rating={56} distance={3.3} region={this.state.region1} origin="Toronto" destination="Markham"></VCard>
 
                 </View>
                 <View style={styles.row}>
@@ -58,7 +58,7 @@ export default class Venues extends Component {
                         info="$$$ ⋅ Burgers and Comfort Food" rating='(56)' distance={3.3}></VCard>
 
                 </View>
-                    
+
             </ScrollView>
         )
     }

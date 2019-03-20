@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface GameService {
     void apiFetch() throws JSONException;
@@ -16,7 +17,7 @@ public interface GameService {
 
     List<Game> getGamesByDate(String date); //should return Game[]
 
-    Game getGameById(int id);
+    Optional<Game> findOneByGameId(int id);
 
     String getGames(String type, String date);
 

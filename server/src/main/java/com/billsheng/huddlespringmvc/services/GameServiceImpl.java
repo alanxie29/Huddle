@@ -8,6 +8,8 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+@org.springframework.transaction.annotation.Transactional
 @Service
 public class GameServiceImpl implements GameService {
 
@@ -29,21 +33,23 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Scheduled(fixedRate = 30000) //for testing
-//    @Scheduled(fixedRate = ???) run at the beginning of every season
+    @Scheduled(fixedRate = 5000)
     public void apiFetch() throws JSONException {
         String apiData = this.getGames("2019-playoff", "20190113");
         JSONArray jsonGameArray = new JSONObject(apiData).getJSONArray("games");
-        System.out.println(jsonGameArray.getJSONObject(0));
-        String idk = jsonGameArray.getJSONObject(0).getJSONObject("schedule").getString("scheduleStatus");
-        System.out.println(idk);
-
-
-        for(int gameCounter = 0; gameCounter < jsonGameArray.length(); gameCounter++) {
-
-
-
-            //save to db
+        for (int gameCounter = 0; gameCounter < jsonGameArray.length(); gameCounter++) {
+            JSONObject gameJson = jsonGameArray.getJSONObject(gameCounter);
+            int gameId = gameJson.getJSONObject("schedule").getInt("id");
+            if(!this.findOneByGameId(gameId).isPresent()) {
+                Game game = new Game(gameId,
+                        gameJson.getJSONObject("schedule").getJSONObject("homeTeam").getString("abbreviation"),
+                        gameJson.getJSONObject("schedule").getJSONObject("awayTeam").getString("abbreviation"), null,
+                        gameJson.getJSONObject("schedule").getJSONObject("venue").getString("name"),
+                        null, true);
+                gameRepository.save(game);
+            } else {
+                System.out.println("nah");
+            }
             //handle games (includes setting inProgress, setting finished)
         }
     }
@@ -63,12 +69,20 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game getGameById(int id) {
-        List<Game> allGames = this.getAllGames();
-        return allGames
-                .stream()
-                .filter((game) -> (game.getId().equals(id)))
-                .collect(Collectors.toList()).get(0);
+    public Optional<Game> findOneByGameId(int id) {
+        Game game = new Game();
+        game.setGameId(id);
+
+        ExampleMatcher matcher = ExampleMatcher.matching();
+        Example<Game> example = Example.of(game, matcher);
+
+        return gameRepository.findOne(example);
+
+//        List<Game> allGames = this.getAllGames();
+//        return allGames
+//                .stream()
+//                .filter((game) -> (game.getId().equals(id)))
+//                .collect(Collectors.toList()).get(0);
     }
 
     @Override

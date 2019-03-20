@@ -31,7 +31,7 @@ export default class Profile extends React.Component {
 
   componentDidMount() {
     this._getLocationAsync();
-    this.getUserData();
+    // this.getUserData();
   }
 
   getUserData = async () => {

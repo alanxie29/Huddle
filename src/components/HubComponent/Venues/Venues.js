@@ -49,7 +49,9 @@ export default class Venues extends Component {
                         desc="Stylish establishment with a patio featuring a modern take on classic comfort dishes and cocktails."
                         hours="Weekdays 11:30am - 11:00pm | Weekends 9:00am - 11:00pm"
                         origin="43.877442,-79.289679"
-                        destination="43.859063,-79.314771">
+                        destination="43.859063,-79.314771"
+                        destinationLatitude={43.859063}
+                        destinationLongitude={-79.314771}>
                     </VCard>
 
                 </View>
@@ -64,7 +66,9 @@ export default class Venues extends Component {
                         desc="Informal hangout dishing out slow-roasted ribs, wings spiced to order and other deep-fried pub grub."
                         hours="Monday-Thursday 11:30am - 1:00am | Friday and Saturday 11:30am - 2:00am | Sunday 11:30am - 12:00am"
                         origin="43.877442,-79.289679"
-                        destination="43.854162,-79.336894">
+                        destination="43.854162,-79.336894"
+                        destinationLatitude={43.854162}
+                        destinationLongitude={-79.336894}>
                     </VCard>
 
                 </View>

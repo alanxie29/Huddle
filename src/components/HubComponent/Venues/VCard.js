@@ -19,7 +19,6 @@ export default class VCard extends Component {
             endAddress: '',
             coords: [],
             steps: [],
-
         }
     }
 
@@ -33,7 +32,7 @@ export default class VCard extends Component {
 
     async directionAPI(origin, destination) {
         try {
-            const direction_API_key = "NOHACKERHAHA";
+            const direction_API_key = "AIzaSyAX6RByVohWeqqqFeR8Yf32XRcl2LO-JB0";
             let response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${direction_API_key}`)
             let responseJSON = await response.json();
 
@@ -96,6 +95,7 @@ export default class VCard extends Component {
     }
 
     render(props) {
+
         const styles = StyleSheet.create({
             card: {
                 width: 340,
@@ -192,12 +192,12 @@ export default class VCard extends Component {
                     <View style={styles.modal}>
                         <MapView style={styles.modalMap} region={this.props.region}>
                             <Marker coordinate={{
-                                latitude: 43.8590,
-                                longitude: -79.3152,
+                                latitude: 43.877442,
+                                longitude: -79.289679,
                             }} />
                             <Marker coordinate={{
-                                latitude: 43.877682,
-                                longitude: -79.289383,
+                                latitude: this.props.destinationLatitude,
+                                longitude: this.props.destinationLongitude,
                             }} />
                             <Polyline
                                 coordinates={this.state.coords}

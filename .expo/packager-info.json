@@ -1,10 +1,10 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 9992,
+  "packagerPid": 12276,
   "expoServerNgrokUrl": "https://72-v28.anonymous.huddle.exp.direct",
   "packagerNgrokUrl": "https://packager.72-v28.anonymous.huddle.exp.direct",
-  "ngrokPid": 9752,
+  "ngrokPid": 8740,
   "devToolsPort": 19002,
   "webpackServerPort": null
 }

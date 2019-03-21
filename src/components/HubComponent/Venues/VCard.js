@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
 
 import { Rating } from 'react-native-elements';
 import { MapView } from 'expo';
@@ -18,6 +18,7 @@ export default class VCard extends Component {
             startAddress: '',
             endAddress: '',
             coords: [],
+            steps: [],
 
         }
     }
@@ -36,6 +37,7 @@ export default class VCard extends Component {
             let response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${direction_API_key}`)
             let responseJSON = await response.json();
 
+            //Sets state for summary, duration, distance, start address, and end address
             this.setState({
                 summary: responseJSON.routes[0].summary,
                 duration: responseJSON.routes[0].legs[0].duration.text,
@@ -43,6 +45,9 @@ export default class VCard extends Component {
                 startAddress: responseJSON.routes[0].legs[0].start_address,
                 endAddress: responseJSON.routes[0].legs[0].end_address
             })
+
+            //Decodes polyline points and stores each points latitude and longitude in an object in the new array
+            //Set state of coords to the new array
             let points = polyline.decode(responseJSON.routes[0].overview_polyline.points);
             let coords = points.map((point, index) => {
                 return {
@@ -51,12 +56,43 @@ export default class VCard extends Component {
                 }
             })
             this.setState({ coords: coords })
+
+            //Stores each steps instructions, duration, and distance in thew new array
+            //Set state of steps to the new array
+            let steps = responseJSON.routes[0].legs[0].steps;
+            let stepsArr = steps.map((steps, index) => {
+                return {
+                    instructions: steps.html_instructions,
+                    duration: steps.duration.text,
+                    distance: steps.distance.text
+                }
+            })
+            this.setState({
+                steps: stepsArr
+            })
             return coords
 
         } catch (error) {
             alert(error)
             return error
         }
+    }
+    // testFcn(steps) {
+    //     for (let i = 0; i <= steps.length; i++) {
+    //         console.log(steps[i].duration)
+    //         console.log(steps[i].distance)
+    //         console.log(steps[i].instructions)
+
+    //     }
+    // }
+    renderSteps() {
+        return this.state.steps.map((steps, index) =>
+            <React.Fragment>
+                <Text key={index}>{steps.distance} {steps.duration} {steps.instructions}</Text>
+                {/* <Text key={index}>{steps.instructions}</Text> */}
+            </React.Fragment>
+
+        );
     }
 
     render(props) {
@@ -100,7 +136,11 @@ export default class VCard extends Component {
                 marginTop: 3,
             },
             modal: {
-                height: 400,
+                height: '100%',
+                width: '100%'
+            },
+            modalMap: {
+                height: '40%',
                 width: '100%'
             },
             modalCard: {
@@ -142,7 +182,7 @@ export default class VCard extends Component {
                     Alert.alert('Modal has been closed.');
                 }}>
                     <View style={styles.modal}>
-                        <MapView style={{ flex: 1 }} region={this.props.region}>
+                        <MapView style={styles.modalMap} region={this.props.region}>
                             <Marker coordinate={{
                                 latitude: 43.8590,
                                 longitude: -79.3152,
@@ -164,6 +204,17 @@ export default class VCard extends Component {
                             <Text>Summary: {this.state.summary}</Text>
                             <Text>Duration: {this.state.duration}</Text>
                             <Text>Distance: {this.state.distance}</Text>
+                            <Text>Steps: {this.state.test}</Text>
+
+                            <ScrollView>
+                                {this.renderSteps()}
+                                {this.renderSteps()}
+                                {this.renderSteps()}
+                            </ScrollView>
+
+                            {/* <TouchableOpacity style={styles.closeButton} onPress={() => this.testFcn(this.state.steps)}>
+                                <Text style={styles.closeText}>Test</Text>
+                            </TouchableOpacity> */}
                             <TouchableOpacity style={styles.closeButton} onPress={() => this.setModalVisible(!this.state.modalVisible)}>
                                 <Text style={styles.closeText}>Go Back</Text>
                             </TouchableOpacity>

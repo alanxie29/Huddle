@@ -12,6 +12,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -33,14 +34,15 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 10000)
     public void apiFetch() throws JSONException {
         String apiData = this.getGames("2019-playoff", "20190113");
         JSONArray jsonGameArray = new JSONObject(apiData).getJSONArray("games");
         for (int gameCounter = 0; gameCounter < jsonGameArray.length(); gameCounter++) {
             JSONObject gameJson = jsonGameArray.getJSONObject(gameCounter);
             int gameId = gameJson.getJSONObject("schedule").getInt("id");
-            if(!this.findOneByGameId(gameId).isPresent()) {
+            Optional<Game> gameFound = this.findOneByGameId(1);
+            if(!gameFound.isPresent()) {
                 Game game = new Game(gameId,
                         gameJson.getJSONObject("schedule").getJSONObject("homeTeam").getString("abbreviation"),
                         gameJson.getJSONObject("schedule").getJSONObject("awayTeam").getString("abbreviation"), null,
@@ -59,6 +61,7 @@ public class GameServiceImpl implements GameService {
         return gameRepository.findAll();
     }
 
+
     @Override
     public List<Game> getGamesByDate(String date) {
         List<Game> allGames = this.getAllGames();
@@ -75,8 +78,17 @@ public class GameServiceImpl implements GameService {
 
         ExampleMatcher matcher = ExampleMatcher.matching();
         Example<Game> example = Example.of(game, matcher);
-
         return gameRepository.findOne(example);
+
+
+
+//        User user = new User();
+//        user.setEmail(email);
+//
+//        ExampleMatcher matcher = ExampleMatcher.matching();
+//        Example<User> example = Example.of(user, matcher);
+//
+//        return userRepository.findOne(example);
 
 //        List<Game> allGames = this.getAllGames();
 //        return allGames

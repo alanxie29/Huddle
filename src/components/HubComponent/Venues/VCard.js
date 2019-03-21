@@ -32,7 +32,7 @@ export default class VCard extends Component {
 
     async directionAPI(origin, destination) {
         try {
-            const direction_API_key = "AIzaSyAX6RByVohWeqqqFeR8Yf32XRcl2LO-JB0";
+            const direction_API_key = "NOHACKERHAHA";
             let response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${direction_API_key}`)
             let responseJSON = await response.json();
 

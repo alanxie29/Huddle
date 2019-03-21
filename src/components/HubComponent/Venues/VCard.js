@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
-
+import { Ionicons } from "@expo/vector-icons";
 import { Rating } from 'react-native-elements';
 import { MapView } from 'expo';
 import { Marker, Polyline } from 'react-native-maps'
@@ -88,8 +88,8 @@ export default class VCard extends Component {
     renderSteps() {
         return this.state.steps.map((steps, index) =>
             <React.Fragment>
-                <Text key={index}>{steps.distance} {steps.duration} {steps.instructions}</Text>
-                {/* <Text key={index}>{steps.instructions}</Text> */}
+                <Text key={index} style={{ fontFamily: 'OpenSans-Light', fontSize: 14, paddingVertical: 2 }}>{steps.instructions}</Text>
+                <Text style={{ fontFamily: 'OpenSans-Light' }}>{steps.distance} ({steps.duration})</Text>
             </React.Fragment>
 
         );
@@ -135,40 +135,48 @@ export default class VCard extends Component {
                 color: 'black',
                 marginTop: 3,
             },
+
             modal: {
                 height: '100%',
                 width: '100%'
             },
             modalMap: {
-                height: '40%',
+                height: '30%',
                 width: '100%'
             },
             modalCard: {
                 width: '100%',
-                marginVertical: 20,
-                justifyContent: "center",
-                alignItems: "center",
-                borderColor: '#000',
-                borderWidth: 1,
+                height: 550,
+                padding: 15,
+                // justifyContent: "center",
+                // alignItems: "center",
+                // borderColor: '#000',
+                // borderWidth: 1,
             },
             modalTitle: {
-                fontFamily: 'OpenSans-Bold',
-                fontSize: 30,
+                fontFamily: 'OpenSans-Regular',
+                color: 'black',
+                fontSize: 24,
                 textAlign: 'center',
             },
-            closeButton: {
-                width: 100,
-                height: 35,
-                borderRadius: 30,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#e74c3c"
+            modalInfo1: {
+                fontFamily: 'OpenSans-Regular',
+                color: 'black',
+                fontSize: 14,
+                paddingVertical: 2,
             },
-            closeText: {
-                fontFamily: "OpenSans-Light",
-                fontSize: 12,
-                color: "white"
-            }
+            modalInfo2: {
+                fontFamily: 'OpenSans-Light',
+            },
+            steps: {
+                height: 220,
+                paddingBottom: 10
+            },
+            arrowDown: {
+                color: '#e74c3c',
+                textAlign: 'center',
+                marginVertical: 10,
+            },
 
         })
 
@@ -199,26 +207,23 @@ export default class VCard extends Component {
 
                         <View style={styles.modalCard}>
                             <Text style={styles.modalTitle}>{this.props.place}</Text>
-                            <Text>Start Address: {this.state.startAddress}</Text>
-                            <Text>End Address: {this.state.endAddress}</Text>
-                            <Text>Summary: {this.state.summary}</Text>
-                            <Text>Duration: {this.state.duration}</Text>
-                            <Text>Distance: {this.state.distance}</Text>
-                            <Text>Steps: {this.state.test}</Text>
 
-                            <ScrollView>
-                                {this.renderSteps()}
-                                {this.renderSteps()}
+                            <View style={{ paddingVertical: 10 }}>
+                                <Text style={styles.modalInfo1}>Description: <Text style={styles.modalInfo2}>{this.props.desc}</Text></Text>
+                                <Text style={styles.modalInfo1}>Hours: <Text style={styles.modalInfo2}>{this.props.hours}</Text></Text>
+                            </View>
+
+                            <View style={{ paddingBottom: 10 }}>
+                                <Text style={styles.modalInfo1}>From: <Text style={styles.modalInfo2}>{this.state.startAddress}</Text></Text>
+                                <Text style={styles.modalInfo1}>To: <Text style={styles.modalInfo2}>{this.state.endAddress}</Text></Text>
+                                <Text style={styles.modalInfo1}>Summary: <Text style={styles.modalInfo2}>{this.state.duration} ({this.state.distance}) via {this.state.summary}</Text></Text>
+                            </View>
+
+                            <ScrollView style={styles.steps}>
+                                <Text style={styles.modalInfo1}>Steps: </Text>
                                 {this.renderSteps()}
                             </ScrollView>
-
-                            {/* <TouchableOpacity style={styles.closeButton} onPress={() => this.testFcn(this.state.steps)}>
-                                <Text style={styles.closeText}>Test</Text>
-                            </TouchableOpacity> */}
-                            <TouchableOpacity style={styles.closeButton} onPress={() => this.setModalVisible(!this.state.modalVisible)}>
-                                <Text style={styles.closeText}>Go Back</Text>
-                            </TouchableOpacity>
-
+                            <Ionicons name="ios-arrow-down" size={30} style={styles.arrowDown} onPress={() => this.setModalVisible(!this.state.modalVisible)} />
                         </View>
                     </View>
                 </Modal>
@@ -235,7 +240,7 @@ export default class VCard extends Component {
                     <Rating imageSize={14} fractions={1} readonly startingValue={this.props.stars} style={{ paddingTop: 3, marginLeft: 65 }}></Rating>
                     <Text style={styles.ratingNumber}>{this.props.rating}</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity >
         )
     }
 }

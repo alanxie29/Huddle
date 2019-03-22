@@ -1,5 +1,5 @@
 # Huddle
-Huddle is a modern sports betting application that connects fans while supporting local venues.
+Huddle is a social media application that connects fans while supporting local venues.
 
 
 First Time Run:

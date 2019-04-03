@@ -20,10 +20,10 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping(path = "/{date}")
-    public @ResponseBody List<Game> getGamesByDate(@PathVariable String date) {
-        return this.gameService.getGamesByDate(date);
-    }
+//    @GetMapping(path = "/{date}")
+//    public @ResponseBody List<Game> getGamesByDate(@PathVariable String date) {
+//        return this.gameService.getGamesByDate(date);
+//    }
 
     @GetMapping(path = "/all")
     public @ResponseBody List<Game> getAllGames() {
@@ -32,7 +32,7 @@ public class GameController {
 
     @GetMapping(path = "/{id}")
     public @ResponseBody
-    Optional<Game> getGamesByDate(@PathVariable int id) {
+    Optional<Game> getGameById(@PathVariable int id) {
         return this.gameService.findOneByGameId(id);
     }
 

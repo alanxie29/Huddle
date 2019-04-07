@@ -1,19 +1,23 @@
 package com.billsheng.huddlespringmvc.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.json.JSONPropertyIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer gameId;
+    private int gameId;
     private String homeTeam;
     private String awayTeam;
     private Date date;
@@ -33,11 +37,32 @@ public class Game {
     @ElementCollection
     private List<User> awayTeamPicks = new ArrayList<>();
 
-    public Integer getGameId() {
+    public Game() {
+    }
+
+    public Game(int gameId, String homeTeam, String awayTeam, Date date, String location, String bettingOdds, boolean isAdded) {
+        this.gameId = gameId;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.date = date;
+        this.location = location;
+        this.bettingOdds = bettingOdds;
+        this.isAdded = isAdded;
+    }
+
+    public int getGameId() {
         return gameId;
     }
 
-    public void setGameId(Integer gameId) {
+    public int getAwayTeamScore() {
+        return awayTeamScore;
+    }
+
+    public void setAwayTeamScore(int awayTeamScore) {
+        this.awayTeamScore = awayTeamScore;
+    }
+
+    public void setGameId(int gameId) {
         this.gameId = gameId;
     }
 
@@ -55,19 +80,6 @@ public class Game {
 
     public void setHomeTeamScore(int homeTeamScore) {
         this.homeTeamScore = homeTeamScore;
-    }
-
-    public Game() {
-    }
-
-    public Game(int gameId, String homeTeam, String awayTeam, Date date, String location, String bettingOdds, boolean isAdded) {
-        this.gameId = gameId;
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
-        this.date = date;
-        this.location = location;
-        this.bettingOdds = bettingOdds;
-        this.isAdded = isAdded;
     }
 
     public boolean isReviewed() {

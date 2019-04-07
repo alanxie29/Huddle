@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
-
+import { Text, View, StyleSheet, TouchableOpacity, Image, Modal, ScrollView } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 import { Rating } from 'react-native-elements';
 import { MapView } from 'expo';
 import { Marker, Polyline } from 'react-native-maps'
@@ -18,7 +18,7 @@ export default class VCard extends Component {
             startAddress: '',
             endAddress: '',
             coords: [],
-
+            steps: [],
         }
     }
 
@@ -36,6 +36,7 @@ export default class VCard extends Component {
             let response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${direction_API_key}`)
             let responseJSON = await response.json();
 
+            //Sets state for summary, duration, distance, start address, and end address
             this.setState({
                 summary: responseJSON.routes[0].summary,
                 duration: responseJSON.routes[0].legs[0].duration.text,
@@ -43,6 +44,9 @@ export default class VCard extends Component {
                 startAddress: responseJSON.routes[0].legs[0].start_address,
                 endAddress: responseJSON.routes[0].legs[0].end_address
             })
+
+            //Decodes polyline points and stores each points latitude and longitude in an object in the new array
+            //Set state of coords to the new array
             let points = polyline.decode(responseJSON.routes[0].overview_polyline.points);
             let coords = points.map((point, index) => {
                 return {
@@ -51,6 +55,20 @@ export default class VCard extends Component {
                 }
             })
             this.setState({ coords: coords })
+
+            //Stores each steps instructions, duration, and distance in thew new array
+            //Set state of steps to the new array
+            let steps = responseJSON.routes[0].legs[0].steps;
+            let stepsArr = steps.map((steps, index) => {
+                return {
+                    instructions: steps.html_instructions,
+                    duration: steps.duration.text,
+                    distance: steps.distance.text
+                }
+            })
+            this.setState({
+                steps: stepsArr
+            })
             return coords
 
         } catch (error) {
@@ -58,8 +76,26 @@ export default class VCard extends Component {
             return error
         }
     }
+    // testFcn(steps) {
+    //     for (let i = 0; i <= steps.length; i++) {
+    //         console.log(steps[i].duration)
+    //         console.log(steps[i].distance)
+    //         console.log(steps[i].instructions)
+
+    //     }
+    // }
+    renderSteps() {
+        return this.state.steps.map((steps, index) =>
+            <React.Fragment>
+                <Text key={index} style={{ fontFamily: 'OpenSans-Light', fontSize: 14, paddingVertical: 2 }}>{steps.instructions}</Text>
+                <Text style={{ fontFamily: 'OpenSans-Light' }}>{steps.distance} ({steps.duration})</Text>
+            </React.Fragment>
+
+        );
+    }
 
     render(props) {
+
         const styles = StyleSheet.create({
             card: {
                 width: 340,
@@ -99,36 +135,48 @@ export default class VCard extends Component {
                 color: 'black',
                 marginTop: 3,
             },
+
             modal: {
-                height: 400,
+                height: '100%',
+                width: '100%'
+            },
+            modalMap: {
+                height: '30%',
                 width: '100%'
             },
             modalCard: {
                 width: '100%',
-                marginVertical: 20,
-                justifyContent: "center",
-                alignItems: "center",
-                borderColor: '#000',
-                borderWidth: 1,
+                height: 550,
+                padding: 15,
+                // justifyContent: "center",
+                // alignItems: "center",
+                // borderColor: '#000',
+                // borderWidth: 1,
             },
             modalTitle: {
-                fontFamily: 'OpenSans-Bold',
-                fontSize: 30,
+                fontFamily: 'OpenSans-Regular',
+                color: 'black',
+                fontSize: 24,
                 textAlign: 'center',
             },
-            closeButton: {
-                width: 100,
-                height: 35,
-                borderRadius: 30,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#e74c3c"
+            modalInfo1: {
+                fontFamily: 'OpenSans-Regular',
+                color: 'black',
+                fontSize: 14,
+                paddingVertical: 2,
             },
-            closeText: {
-                fontFamily: "OpenSans-Light",
-                fontSize: 12,
-                color: "white"
-            }
+            modalInfo2: {
+                fontFamily: 'OpenSans-Light',
+            },
+            steps: {
+                height: 220,
+                paddingBottom: 10
+            },
+            arrowDown: {
+                color: '#e74c3c',
+                textAlign: 'center',
+                marginVertical: 10,
+            },
 
         })
 
@@ -142,14 +190,14 @@ export default class VCard extends Component {
                     Alert.alert('Modal has been closed.');
                 }}>
                     <View style={styles.modal}>
-                        <MapView style={{ flex: 1 }} region={this.props.region}>
+                        <MapView style={styles.modalMap} region={this.props.region}>
                             <Marker coordinate={{
-                                latitude: 43.8590,
-                                longitude: -79.3152,
+                                latitude: 43.877442,
+                                longitude: -79.289679,
                             }} />
                             <Marker coordinate={{
-                                latitude: 43.877682,
-                                longitude: -79.289383,
+                                latitude: this.props.destinationLatitude,
+                                longitude: this.props.destinationLongitude,
                             }} />
                             <Polyline
                                 coordinates={this.state.coords}
@@ -159,15 +207,23 @@ export default class VCard extends Component {
 
                         <View style={styles.modalCard}>
                             <Text style={styles.modalTitle}>{this.props.place}</Text>
-                            <Text>Start Address: {this.state.startAddress}</Text>
-                            <Text>End Address: {this.state.endAddress}</Text>
-                            <Text>Summary: {this.state.summary}</Text>
-                            <Text>Duration: {this.state.duration}</Text>
-                            <Text>Distance: {this.state.distance}</Text>
-                            <TouchableOpacity style={styles.closeButton} onPress={() => this.setModalVisible(!this.state.modalVisible)}>
-                                <Text style={styles.closeText}>Go Back</Text>
-                            </TouchableOpacity>
 
+                            <View style={{ paddingVertical: 10 }}>
+                                <Text style={styles.modalInfo1}>Description: <Text style={styles.modalInfo2}>{this.props.desc}</Text></Text>
+                                <Text style={styles.modalInfo1}>Hours: <Text style={styles.modalInfo2}>{this.props.hours}</Text></Text>
+                            </View>
+
+                            <View style={{ paddingBottom: 10 }}>
+                                <Text style={styles.modalInfo1}>From: <Text style={styles.modalInfo2}>{this.state.startAddress}</Text></Text>
+                                <Text style={styles.modalInfo1}>To: <Text style={styles.modalInfo2}>{this.state.endAddress}</Text></Text>
+                                <Text style={styles.modalInfo1}>Summary: <Text style={styles.modalInfo2}>{this.state.duration} ({this.state.distance}) via {this.state.summary}</Text></Text>
+                            </View>
+
+                            <ScrollView style={styles.steps}>
+                                <Text style={styles.modalInfo1}>Steps: </Text>
+                                {this.renderSteps()}
+                            </ScrollView>
+                            <Ionicons name="ios-arrow-down" size={30} style={styles.arrowDown} onPress={() => this.setModalVisible(!this.state.modalVisible)} />
                         </View>
                     </View>
                 </Modal>
@@ -184,7 +240,7 @@ export default class VCard extends Component {
                     <Rating imageSize={14} fractions={1} readonly startingValue={this.props.stars} style={{ paddingTop: 3, marginLeft: 65 }}></Rating>
                     <Text style={styles.ratingNumber}>{this.props.rating}</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity >
         )
     }
 }

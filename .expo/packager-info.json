@@ -1,10 +1,19 @@
 {
+<<<<<<< HEAD
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
   "expoServerNgrokUrl": "https://2y-fs5.anonymous.huddle.exp.direct",
   "packagerNgrokUrl": "https://packager.2y-fs5.anonymous.huddle.exp.direct",
   "ngrokPid": 15056,
+=======
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 9992,
+  "expoServerNgrokUrl": "https://72-v28.anonymous.huddle.exp.direct",
+  "packagerNgrokUrl": "https://packager.72-v28.anonymous.huddle.exp.direct",
+  "ngrokPid": 9752,
+>>>>>>> 60f25ef0a13213a29364887f2dfee7108fa426ef
   "devToolsPort": 19002,
   "webpackServerPort": null
 }

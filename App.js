@@ -20,6 +20,8 @@ import AuthLoading from './src/components/AuthLoading/AuthLoading'
 //     'Shake or press menu button for dev menu',
 // });
 
+
+
 export default class App extends Component {
   state = {
     fontLoaded: false,

@@ -13,13 +13,17 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private Integer gameId;
     private String homeTeam;
     private String awayTeam;
     private Date date;
     private String location;
     private String bettingOdds;
+    private int homeTeamScore;
+    private int awayTeamScore;
     private boolean inProgress;
     private boolean isReviewed;
+    private boolean isAdded = false;
 
     @OneToMany(cascade = CascadeType.ALL)
     @ElementCollection
@@ -28,6 +32,43 @@ public class Game {
     @OneToMany(cascade = CascadeType.ALL)
     @ElementCollection
     private List<User> awayTeamPicks = new ArrayList<>();
+
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
+    }
+
+    public boolean isAdded() {
+        return isAdded;
+    }
+
+    public void setAdded(boolean added) {
+        isAdded = added;
+    }
+
+    public int getHomeTeamScore() {
+        return homeTeamScore;
+    }
+
+    public void setHomeTeamScore(int homeTeamScore) {
+        this.homeTeamScore = homeTeamScore;
+    }
+
+    public Game() {
+    }
+
+    public Game(int gameId, String homeTeam, String awayTeam, Date date, String location, String bettingOdds, boolean isAdded) {
+        this.gameId = gameId;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.date = date;
+        this.location = location;
+        this.bettingOdds = bettingOdds;
+        this.isAdded = isAdded;
+    }
 
     public boolean isReviewed() {
         return isReviewed;

@@ -3,16 +3,19 @@ import { ImagePicker, Location, Permissions } from "expo";
 import { Image, View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import User from '../../../models/User';
 
 export default class Profile extends React.Component {
-  state = {
+  constructor(props){
+    super(props)
+  this.state = {
     image:
       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    email: '',
     locationResult: null,
     CameraRollPermission: null,
     CameraPermission: null,
     userDetails: {
-      email: "",
       favouriteTeam: "",
       wins: null,
       previousGame: "",
@@ -20,22 +23,24 @@ export default class Profile extends React.Component {
       lastName: "",
       winPercentage: null,
       gamesPlayed: null
-    }
-  };
+    },
+    userData: [],
+  }
+};
+
 
   componentDidMount() {
     this._getLocationAsync();
-    this.getUserData();
+    // this.getUserData();
   }
 
   getUserData = async () => {
-    event.preventDefault();
-
     await axios
-      .get("localhost:8081/profile")
-      .then(response => {
-        this.setState({ userDetails: response});
-      })
+      .post('localhost:8081/profile', `${this.state.email}`)
+      .then(data => data.array.forEach(user => {
+        userObj = new User(user.id, user.email, user.firstName, user.lastName, user.password, user.chosenTeam, user.gamesPlayed, user.gamesWon);
+        this.setState({userData: [...this.state.userData, userObj]})
+      }))
       .catch(error => {
         alert(error, "error fetching user profile.");
       });

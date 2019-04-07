@@ -1,7 +1,7 @@
 {
   "hostType": "tunnel",
   "lanType": "ip",
-  "dev": true,
-  "minify": false,
-  "urlRandomness": "2y-fs5"
+  "dev": false,
+  "minify": true,
+  "urlRandomness": "72-v28"
 }

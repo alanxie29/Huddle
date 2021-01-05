@@ -9,7 +9,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
     "@mapbox/polyline": "^1.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "expo": "^32.0.6",
     "expo-font": "^3.0.1",
     "expo-vector-icons": "^9.0.0",
